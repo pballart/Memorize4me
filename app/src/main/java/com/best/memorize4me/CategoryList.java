@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class SearchList extends ActionBarActivity {
+public class CategoryList extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
