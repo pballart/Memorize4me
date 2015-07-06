@@ -10,14 +10,14 @@ import java.util.ArrayList;
  * Created by konstantin.bogdanov on 06.07.2015.
  */
 public class SearchItem {
-    long id;
-    long categoryId;
-    String title;
-    Long date;
-    float price;
-    int rate;
-    Contact contact;
-    String description;
-    Location location;
-    ArrayList<SearchItemPhoto> imageUrls;
+    public long id;
+    public long categoryId;
+    public String title;
+    public Long date;
+    public float price;
+    public int rate;
+    public Contact contact;
+    public String description;
+    public  Location location;
+    public ArrayList<SearchItemPhoto> imageUrls;
 }
