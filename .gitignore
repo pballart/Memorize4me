@@ -25,4 +25,6 @@ proguard/
 
 # Log Files
 *.log
-.idea/
+
+.idea/*
+Memorize4me.iml
