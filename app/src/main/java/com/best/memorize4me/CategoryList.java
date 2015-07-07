@@ -1,5 +1,6 @@
 package com.best.memorize4me;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +50,8 @@ public class CategoryList extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add_category) {
             Log.d("add category pressed", "hostia");
+            Intent myIntent = new Intent(CategoryList.this, NewCategory.class);
+            CategoryList.this.startActivity(myIntent);
             return true;
         }
 
