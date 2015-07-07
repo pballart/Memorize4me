@@ -1,15 +1,14 @@
 package com.best.memorize4me;
 
-import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.best.memorize4me.db.adapters.CategoryAdapter;
+import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
 
 import java.util.ArrayList;
@@ -24,6 +23,7 @@ public class CategoryList extends ActionBarActivity {
 
         // Construct the data source
         ArrayList<Category> arrayOfCategories = new ArrayList<Category>();
+        arrayOfCategories = FakeDB.getCategories();
 // Create the adapter to convert the array to views
         CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
 // Attach the adapter to a ListView
@@ -35,7 +35,7 @@ public class CategoryList extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_search_list, menu);
+        getMenuInflater().inflate(R.menu.menu_category_list, menu);
         return true;
     }
 
@@ -47,7 +47,8 @@ public class CategoryList extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add_category) {
+            Log.d("add category pressed", "hostia");
             return true;
         }
 

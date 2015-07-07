@@ -31,9 +31,6 @@ public class NewCategory extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
         if (id == R.id.saveCategory){
            //TODO CALL METHOD CREATE CATEGORY
         }

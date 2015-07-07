@@ -17,8 +17,9 @@ import java.util.ArrayList;
  * Created by Acer on 7.7.2015.
  */
 public class CategoryAdapter extends ArrayAdapter<Category> {
-    public CategoryAdapter(Context context, ArrayList<Category> users) {
-        super(context, 0, users);
+
+    public CategoryAdapter(Context context, ArrayList<Category> category) {
+        super(context, 0, category);
     }
 
     @Override
