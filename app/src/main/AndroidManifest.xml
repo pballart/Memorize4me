@@ -19,7 +19,12 @@
         </activity>
         <activity
             android:name=".NewCategory"
-            android:label="@string/title_activity_new_category" android:windowSoftInputMode="stateHidden" >
+            android:label="@string/title_activity_new_category"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name=".Create_new_item"
+            android:label="@string/title_activity_create_new_item" >
         </activity>
     </application>
 
