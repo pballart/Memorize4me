@@ -11,7 +11,7 @@ public final class SearchItem {
     public SearchItem() {}
 
     /* Inner class that defines the table contents */
-    public static abstract class CategoryEntry implements BaseColumns {
+    public static abstract class SearchItemEntry implements BaseColumns {
         public static final String TABLE_NAME = "search_item";
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_CATEGORY_ID = "category_id";

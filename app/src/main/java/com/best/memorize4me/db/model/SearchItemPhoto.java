@@ -7,4 +7,5 @@ public class SearchItemPhoto {
     public long id;
     public String title;
     public String url;
+    public long searchItemId;
 }

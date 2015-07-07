@@ -17,7 +17,7 @@ public final class Category {
         public static final String TABLE_NAME = "category";
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_TITLE = "title";
-        public static final String COLUMN_DATE = "date"; // sql date?
+        public static final String COLUMN_DATE = "date";
 
     }
 }
