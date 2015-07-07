@@ -35,7 +35,9 @@
             android:id="@+id/editText"
             android:layout_alignTop="@+id/newCategoryTitle"
             android:layout_toRightOf="@+id/newCategoryTitle"
-            android:layout_toEndOf="@+id/newCategoryTitle" />
+            android:layout_toEndOf="@+id/newCategoryTitle"
+            android:inputType="text"
+            android:imeOptions="actionDone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,7 +57,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/newCategoryDate" />
+        android:layout_alignTop="@+id/newCategoryDate"
+        android:calendarViewShown="false" />
 
 
 </RelativeLayout>

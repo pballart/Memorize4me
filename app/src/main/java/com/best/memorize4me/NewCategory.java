@@ -1,5 +1,7 @@
 package com.best.memorize4me;
 
+import android.content.Intent;
+import android.os.Debug;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -50,7 +52,10 @@ public class NewCategory extends ActionBarActivity {
             EditText title = (EditText) findViewById(R.id.editText);
             newCategory.title=title.getText().toString();
             newCategory.date= startTime;
+
             //todo save newCategory to database
+            Intent i = new Intent (this, CategoryList.class);
+            startActivity (i);
         }
         return super.onOptionsItemSelected(item);
     }
