@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Acer on 6.7.2015.
  */
 public class FakeDB {
-    public ArrayList<Category> getCategories() {
+    static public ArrayList<Category> getCategories() {
         ArrayList<Category> arrayList = new ArrayList<Category>();
         Category cat1 = new Category();
         cat1.id = 1;
