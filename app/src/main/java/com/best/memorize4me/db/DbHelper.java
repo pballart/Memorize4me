@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by Acer on 6.7.2015.
  */
+/*
 public class DbHelper extends SQLiteOpenHelper{
 
     public static final int DATABASE_VERSION = 1;
@@ -41,3 +42,4 @@ public class DbHelper extends SQLiteOpenHelper{
         onUpgrade(db, oldVersion, newVersion);
     }
 }
+*/
