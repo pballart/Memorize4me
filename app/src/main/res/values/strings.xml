@@ -5,5 +5,6 @@
     <string name="add_category">Add Category</string>
     <string name="title_activity_new_category">NewCategory</string>
     <string name="title_activity_create_new_item">Create new item</string>
+    <string name="title_activity_item_list">ItemList</string>
     <string name="action_settings">Settings</string>
 </resources>
