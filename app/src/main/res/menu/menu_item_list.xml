@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="com.best.memorize4me.ItemList">
+    <item android:id="@+id/action_add_category"
+        android:icon="@drawable/add_category_button"
+        android:title="@string/add_category"
+        app:showAsAction="ifRoom" />
+</menu>

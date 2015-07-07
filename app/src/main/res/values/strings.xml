@@ -4,4 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="add_category">Add Category</string>
     <string name="title_activity_new_category">NewCategory</string>
+    <string name="title_activity_item_list">ItemList</string>
+    <string name="action_settings">Settings</string>
 </resources>

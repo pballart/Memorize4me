@@ -21,6 +21,10 @@
             android:name=".NewCategory"
             android:label="@string/title_activity_new_category" >
         </activity>
+        <activity
+            android:name=".ItemList"
+            android:label="@string/title_activity_item_list" >
+        </activity>
     </application>
 
 </manifest>
