@@ -10,34 +10,48 @@ import com.best.memorize4me.db.table.SearchItem;
 
 import static com.best.memorize4me.db.table.Category.*;
 import static com.best.memorize4me.db.table.SearchItem.*;
+import static com.best.memorize4me.db.table.SearchItemPhoto.*;
 
-/**
- * Created by Acer on 6.7.2015.
- */
-/*
+
 public class DbHelper extends SQLiteOpenHelper{
 
     public static final int DATABASE_VERSION = 1;
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String INTEGER_TYPE = " INTEGER";
+    private static final String DATE_TYPE = " DATE";
 
-//    private static final String TEXT_TYPE = " TEXT";
-//    private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_CATEGORIES =
             "CREATE TABLE" + CategoryEntry.TABLE_NAME + " (" +
                     CategoryEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
                     CategoryEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
                     CategoryEntry.COLUMN_DATE + INTEGER_TYPE +
-                    " )";
+                    " )"
+            ;
 
     private static final  String SQL_CREATE_SEARCH_ITEMS =
             "CREATE TABLE" + SearchItemEntry.TABLE_NAME + " (" +
                     SearchItemEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
-                    SearchItemEntry.COLUMN_CATEGORY_ID +
+                    SearchItemEntry.COLUMN_CATEGORY_ID + "INTEGER," +
+                    SearchItemEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
+                    SearchItemEntry.COLUMN_DATE + DATE_TYPE + COMMA_SEP +
+                    SearchItemEntry.COLUMN_PRICE + INTEGER_TYPE + COMMA_SEP +
+                    SearchItemEntry.COLUMN_RATE + INTEGER_TYPE + COMMA_SEP +
+                    SearchItemEntry.COLUMN_CONTACT + TEXT_TYPE + COMMA_SEP +
+                    SearchItemEntry.COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
+                    SearchItemEntry.COLUMN_LOCATION + TEXT_TYPE +
+                    " )"
             ;
 
-/*
+    private static final String SQL_CREATE_SEARCH_ITEM_PHOTOS =
+            "CREATE TABLE" + SearchItemPhotoEntry.TABLE_NAME + " (" +
+                    SearchItemPhotoEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
+                    SearchItemPhotoEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
+                    SearchItemPhotoEntry.COLUMN_URL + TEXT_TYPE + COMMA_SEP +
+                    SearchItemPhotoEntry.COLUMN_SEARCH_ITEM_ID + INTEGER_TYPE +
+                    " )"
+            ;
+
     private static final String SQL_DELETE_CATEGORIES =
             "DROP TABLE IF EXISTS " + Category.CategoryEntry.TABLE_NAME;
 
@@ -45,17 +59,18 @@ public class DbHelper extends SQLiteOpenHelper{
             "DROP TABLE IF EXISTS " + SearchItem.SearchItemEntry.TABLE_NAME;
 
     private static final String SQL_DELETE_SEARCH_ITEM_PHOTOS =
-            "DROP TABLE IF EXISTS " + SearchItemPhoto.SearchItemPhotoEntry.TABLE_NAME;
-*/
+            "DROP TABLE IF EXISTS " + SearchItemPhotoEntry.TABLE_NAME;
+
 
     public DbHelper(Context context) {
-//        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        super(context, "dsds", null, DATABASE_VERSION);
+        super(context, "memorize4me", null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL(SQL_CREATE_CATEGORIES);
+        db.execSQL(SQL_CREATE_SEARCH_ITEMS);
+        db.execSQL(SQL_CREATE_SEARCH_ITEM_PHOTOS);
     }
 
     @Override
@@ -67,4 +82,3 @@ public class DbHelper extends SQLiteOpenHelper{
         onUpgrade(db, oldVersion, newVersion);
     }
 }
-*/
