@@ -75,6 +75,9 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(SQL_DELETE_SEARCH_ITEM_PHOTOS);
+        db.execSQL(SQL_DELETE_SEARCH_ITEMS);
+        db.execSQL(SQL_DELETE_CATEGORIES);
         onCreate(db);
     }
 
