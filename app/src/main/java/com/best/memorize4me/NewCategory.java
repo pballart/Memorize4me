@@ -5,8 +5,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
+import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.interfaces.AppInterface;
+import com.best.memorize4me.db.model.Category;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class NewCategory extends ActionBarActivity {
@@ -21,6 +29,7 @@ public class NewCategory extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_new_category, menu);
+
         return true;
     }
 
@@ -32,7 +41,16 @@ public class NewCategory extends ActionBarActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.saveCategory){
-           //TODO CALL METHOD CREATE CATEGORY
+            View v = findViewById(R.id.saveCategory);
+            Category newCategory=new Category();
+            DatePicker dp = (DatePicker) findViewById(R.id.datePicker);
+            Calendar c = Calendar.getInstance();
+            c.set (dp.getYear(),dp.getMonth(),dp.getDayOfMonth());
+            long startTime = c.getTimeInMillis();
+            EditText title = (EditText) findViewById(R.id.editText);
+            newCategory.title=title.getText().toString();
+            newCategory.date= startTime;
+            //todo save newCategory to database
         }
         return super.onOptionsItemSelected(item);
     }
