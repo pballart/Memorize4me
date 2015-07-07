@@ -2,8 +2,6 @@ package com.best.memorize4me.db.model;
 
 import android.location.Location;
 
-import com.best.memorize4me.db.Contact;
-
 import java.util.ArrayList;
 
 /**

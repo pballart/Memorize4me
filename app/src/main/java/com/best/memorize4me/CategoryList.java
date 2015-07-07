@@ -1,9 +1,18 @@
 package com.best.memorize4me;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.best.memorize4me.db.adapters.CategoryAdapter;
+import com.best.memorize4me.db.model.Category;
+
+import java.util.ArrayList;
 
 
 public class CategoryList extends ActionBarActivity {
@@ -12,6 +21,15 @@ public class CategoryList extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_list);
+
+        // Construct the data source
+        ArrayList<Category> arrayOfCategories = new ArrayList<Category>();
+// Create the adapter to convert the array to views
+        CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
+// Attach the adapter to a ListView
+        ListView listView = (ListView) findViewById(R.id.categoryListView);
+        listView.setAdapter(adapter);
+
     }
 
     @Override
@@ -35,4 +53,5 @@ public class CategoryList extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
