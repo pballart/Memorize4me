@@ -1,6 +1,7 @@
 package com.best.memorize4me;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,12 @@ public class ItemList extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
+        
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setIcon(R.mipmap.ic_launcher);
+
         Intent intent = getIntent();
         currentCategory = (Category) intent.getSerializableExtra("category");
 
@@ -36,7 +43,7 @@ public class ItemList extends ActionBarActivity {
         categoryTV.setText(currentCategory.title);
 
         TextView dateTV = (TextView)findViewById(R.id.textViewDate);
-        dateTV.setText(DateUtils.dateToString(currentCategory.getDate()));
+        dateTV.setText(DateUtils.dateToString(currentCategory.date));
 
         final ListView listView = (ListView) findViewById(R.id.itemListView);
         ArrayList<SearchItem> searchItems = StorageFacade.getInstance().getSearchItemByCategory(currentCategory.id);

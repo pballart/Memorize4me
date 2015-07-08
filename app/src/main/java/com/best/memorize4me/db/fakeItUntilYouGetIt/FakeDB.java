@@ -46,7 +46,6 @@ public class FakeDB {
         c1.phoneNumber = "123456";
         s1.contact = c1;
         s1.description = "Hola gaaat";
-        s1.multilineDescription = "dffdsg";
 
        if (categoryId == 1) {
            array.add(s1);
@@ -65,7 +64,6 @@ public class FakeDB {
         c2.phoneNumber = "123asdf456";
         s2.contact = c2;
         s2.description = "Gat i Goos";
-        s2.multilineDescription = "Fine thanks";
         array.add(s2);
         return  array;
     }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.best.memorize4me.R;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.SearchItem;
+import com.best.memorize4me.util.DateUtils;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class ItemAdapter extends ArrayAdapter<SearchItem> {
         TextView rate = (TextView) convertView.findViewById(R.id.itemRateTextView);
         // Populate the data into the template view using the data object
         title.setText(searchItem.title);
-        date.setText(String.valueOf(searchItem.date));
+        date.setText(DateUtils.dateToString(searchItem.date));
         description.setText(searchItem.description);
         price.setText(String.valueOf(searchItem.price));
         rate.setText(String.valueOf(searchItem.rate));

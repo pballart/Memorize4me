@@ -32,7 +32,7 @@ public class DbHelper extends SQLiteOpenHelper{
     private static final  String SQL_CREATE_SEARCH_ITEMS =
             "CREATE TABLE " + SearchItemEntry.TABLE_NAME + " (" +
                     SearchItemEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
-                    SearchItemEntry.COLUMN_CATEGORY_ID + INTEGER_TYPE +
+                    SearchItemEntry.COLUMN_CATEGORY_ID + INTEGER_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_DATE + DATE_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_PRICE + INTEGER_TYPE + COMMA_SEP +

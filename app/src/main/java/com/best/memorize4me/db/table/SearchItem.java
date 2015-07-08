@@ -24,6 +24,5 @@ public final class SearchItem {
         public static final String COLUMN_EMAIL = "email";
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_LOCATION = "location";
-
     }
 }
