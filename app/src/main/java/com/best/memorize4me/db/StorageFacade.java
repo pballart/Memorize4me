@@ -25,7 +25,7 @@ public class StorageFacade implements AppInterface{
         return MemorizeForMeApplication.getDatabase(MemorizeForMeApplication.getContext());
     }
 
-    public static synchronized StorageFacade getInstance() {
+    public static StorageFacade getInstance() {
         if (instance == null) {
             instance = new StorageFacade();
         }
@@ -91,8 +91,24 @@ public class StorageFacade implements AppInterface{
 
 
     @Override
-    public void createSearchItem(SearchItem searchItem) {
-
+    public void createSearchItem(SearchItem searchItem, com.best.memorize4me.db.model.Category category) {
+        ContentValues values = new ContentValues();
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_CATEGORY_ID, category.id);
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_NAME, searchItem.contact.firstName + " " + searchItem.contact.lastName );
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DATE, searchItem.date);
+//        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_LOCATION, String.valueOf(searchItem.location));
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_EMAIL, searchItem.contact.email);
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_PHONE_NUMBER, searchItem.contact.phoneNumber);
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DATE, searchItem.date);
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DESCRIPTION, searchItem.description);
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_PRICE, searchItem.price);
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_RATE, searchItem.rate);
+        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_TITLE, searchItem.title);
+        getDatabase().insert(
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.TABLE_NAME,
+                null,
+                values
+        );
     }
 
     @Override
