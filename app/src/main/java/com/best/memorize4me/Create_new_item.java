@@ -67,10 +67,15 @@ public class Create_new_item extends ActionBarActivity {
             searchItem.date = System.currentTimeMillis();
             RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
             searchItem.rate = mBar.getRating();
-            searchItem.price= Float.parseFloat(price.getText().toString());
+            if (price.getText().toString().matches("")){
+                searchItem.price=0;
+            }
+            else {
+                searchItem.price= Float.parseFloat(price.getText().toString());
+            }
             //todo save newItem to database
             Intent i = new Intent (this, ItemList.class);
-            startActivity (i);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

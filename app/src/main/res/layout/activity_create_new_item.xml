@@ -21,12 +21,7 @@
                  android:id="@+id/categoryTitle"
                  android:text = "category title"/>
 
-                 <EditText
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:id="@+id/editPrice"
-                     android:layout_column="15"
-                     android:inputType="numberDecimal" />
+
              </TableRow>
             <TableRow>
                 <TextView
@@ -37,11 +32,6 @@
                     android:inputType="date"
                     android:text="categorydate" />
 
-                <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar"
-                    android:layout_column="15" />
             </TableRow>
             <TableRow>
 
@@ -54,9 +44,12 @@
 
                 <EditText
                     android:layout_width="wrap_content"
+                    android:text=""
                     android:layout_height="wrap_content"
                     android:id="@+id/editTitle"
-                    android:layout_column="15" />
+                    android:layout_column="15"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext" />
 
             </TableRow>
             <TableRow>
@@ -66,13 +59,35 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Description"
+                    android:singleLine="true"
                     android:id="@+id/itemDescriptiontitle" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/editDescription"
-                    android:layout_column="15" />
+                    android:text=""
+                    android:layout_column="15"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"/>
+
+            </TableRow>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Price"
+                    android:singleLine="true"
+                    android:id="@+id/itemPrice" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editPrice"
+                    android:layout_column="15"
+                    android:inputType="numberDecimal" />
 
             </TableRow>
             <TableRow>
@@ -88,7 +103,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/editContact"
-                    android:layout_column="15" />
+                    android:text=""
+                    android:layout_column="15"
+                    android:inputType="textPersonName"
+                    android:imeOptions="actionNext"/>
 
             </TableRow>
             <TableRow>
@@ -104,7 +122,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/editTel"
-                    android:layout_column="15" />
+                    android:layout_column="15"
+                    android:text=""
+                    android:inputType="phone"
+                    android:imeOptions="actionNext"/>
 
             </TableRow>
             <TableRow>
@@ -119,8 +140,11 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text=""
                     android:id="@+id/editMail"
-                    android:layout_column="15" />
+                    android:layout_column="15"
+                    android:inputType="textEmailAddress"
+                    android:imeOptions="actionNext" />
 
             </TableRow>
 
@@ -135,13 +159,26 @@
 
                 <EditText
                     android:layout_width="wrap_content"
-
+                    android:text=""
                     android:layout_height="wrap_content"
                     android:id="@+id/editMultiline"
                     android:layout_column="15"
                     android:inputType="textMultiLine"
                     android:imeOptions="actionDone"/>
 
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Rating"
+                    android:id="@+id/itemRate" />
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ratingBar"
+                    android:layout_column="15" />
             </TableRow>
         </TableLayout>
 
