@@ -11,4 +11,10 @@ public class DateUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return simpleDateFormat.format(date);
     }
+
+    public static String dateToString(long longDate) {
+        Date date = new Date(longDate);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return simpleDateFormat.format(date);
+    }
 }

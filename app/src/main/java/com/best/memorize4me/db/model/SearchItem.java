@@ -17,7 +17,6 @@ public class SearchItem {
     public Contact contact;
     public String description;
     public Location location;
-    public String multilineDescription;
     public ArrayList<SearchItemPhoto> imageUrls;
 
     public SearchItem() {}
@@ -35,7 +34,6 @@ public class SearchItem {
         this.contact = contact;
         this.description = description;
         this.location = location;
-        this.multilineDescription = multilineDescription;
         this.imageUrls = null;
         //this.imageUrls = imageUrls;
         /*
@@ -48,8 +46,7 @@ public class SearchItem {
 
     public SearchItem(long id, long categoryId, String title,
                       Long date, float price, float rate,
-                      Contact contact, String description, Location location,
-                      String multilineDescription, ArrayList<SearchItemPhoto> imageUrls) {
+                      Contact contact, String description, Location location, ArrayList<SearchItemPhoto> imageUrls) {
         this.id = id;
         this.categoryId = categoryId;
         this.title = title;
@@ -59,7 +56,6 @@ public class SearchItem {
         this.contact = contact;
         this.description = description;
         this.location = location;
-        this.multilineDescription = multilineDescription;
         this.imageUrls = null;
         //this.imageUrls = imageUrls;
         /*
@@ -73,7 +69,7 @@ public class SearchItem {
     public SearchItem(long id, long categoryId, String title,
                       Long date, float price, float rate,
                       String contactName, String contactPhoneNumber, String contactEmail,
-                      String description, Location location, String multilineDescription,
+                      String description, Location location,
                       ArrayList<SearchItemPhoto> imageUrls) {
         this.id = id;
         this.categoryId = categoryId;
@@ -84,7 +80,6 @@ public class SearchItem {
         this.contact = new Contact(contactName, contactPhoneNumber, contactEmail);
         this.description = description;
         this.location = location;
-        this.multilineDescription = multilineDescription;
         this.imageUrls = null;
         //this.imageUrls = imageUrls;
         /*

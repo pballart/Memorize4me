@@ -81,12 +81,11 @@ public class StorageFacade implements AppInterface{
                 com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_EMAIL,
                 com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DESCRIPTION,
                 //com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_LOCATION
-                SearchItemEntry.COLUMN_MULTILINE_DESCRIPTION
         };
         Cursor cursor = getDatabase().query(
                 com.best.memorize4me.db.table.SearchItem.SearchItemEntry.TABLE_NAME,
                 projection,
-                "WHERE " + com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_CATEGORY_ID + " = ?",
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_CATEGORY_ID + " = ?",
                 new String[] { String.valueOf(categoryId) },
                 null,
                 null,
@@ -106,7 +105,6 @@ public class StorageFacade implements AppInterface{
                         cursor.getString(8), //email
                         cursor.getString(9), //description
                         null, //location
-                        cursor.getString(10), //multiline description
                         null //image urls
                 );
                 searchItemList.add(searchItem);

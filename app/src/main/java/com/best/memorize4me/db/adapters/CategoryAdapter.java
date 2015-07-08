@@ -40,7 +40,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         TextView date = (TextView) convertView.findViewById(R.id.categoryDateText);
         // Populate the data into the template view using the data object
         title.setText(category.title);
-        date.setText(DateUtils.dateToString(category.getDate()));
+        date.setText(DateUtils.dateToString(category.date));
         // Return the completed view to render on screen
         return convertView;
     }

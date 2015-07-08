@@ -43,7 +43,7 @@ public class ItemList extends ActionBarActivity {
         categoryTV.setText(currentCategory.title);
 
         TextView dateTV = (TextView)findViewById(R.id.textViewDate);
-        dateTV.setText(DateUtils.dateToString(currentCategory.getDate()));
+        dateTV.setText(DateUtils.dateToString(currentCategory.date));
 
         final ListView listView = (ListView) findViewById(R.id.itemListView);
         ArrayList<SearchItem> searchItems = StorageFacade.getInstance().getSearchItemByCategory(currentCategory.id);
