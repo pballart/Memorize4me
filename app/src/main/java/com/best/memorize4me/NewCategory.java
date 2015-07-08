@@ -60,7 +60,9 @@ public class NewCategory extends ActionBarActivity {
             View v = findViewById(R.id.saveCategory);
             Category category = getCategoryFromFields();
             StorageFacade.getInstance().createCategory(category);
-            this.finish();
+            Intent intent = new Intent(this, CategoryList.class);
+            startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
