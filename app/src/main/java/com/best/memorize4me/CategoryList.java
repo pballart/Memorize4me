@@ -93,6 +93,7 @@ public class CategoryList extends ActionBarActivity {
             Log.d("add category pressed", "hostia");
             Intent myIntent = new Intent(CategoryList.this, NewCategory.class);
             startActivity(myIntent);
+            finish();
             return true;
         }
 

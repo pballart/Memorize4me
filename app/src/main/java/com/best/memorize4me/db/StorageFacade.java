@@ -109,7 +109,7 @@ public class StorageFacade implements AppInterface{
     public void createSearchItem(SearchItem searchItem, com.best.memorize4me.db.model.Category category) {
         ContentValues values = new ContentValues();
         values.put(SearchItemEntry.COLUMN_CATEGORY_ID, category.id);
-        values.put(SearchItemEntry.COLUMN_NAME, searchItem.contact.firstName + " " + searchItem.contact.lastName );
+        values.put(SearchItemEntry.COLUMN_NAME, searchItem.contact.name);
         values.put(SearchItemEntry.COLUMN_DATE, searchItem.date);
 //        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_LOCATION, String.valueOf(searchItem.location));
         values.put(SearchItemEntry.COLUMN_EMAIL, searchItem.contact.email);

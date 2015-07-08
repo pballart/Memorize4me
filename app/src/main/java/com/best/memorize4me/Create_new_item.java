@@ -58,7 +58,7 @@ public class Create_new_item extends ActionBarActivity {
             Contact newContact = new Contact();
             newContact.email=mail.getText().toString();
             newContact.phoneNumber = tel.getText().toString();
-            newContact.firstName=contact.getText().toString();
+            newContact.name=contact.getText().toString();
             //todo: add contact lastName
             searchItem.title=title.getText().toString();
             searchItem.description=description.getText().toString();
