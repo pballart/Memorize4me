@@ -164,27 +164,6 @@
 
             </TableRow>
 
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Description"
-                    android:id="@+id/itemDescription" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:text=""
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editMultiline"
-                    android:ems="10"
-                    android:layout_column="5"
-                    android:singleLine="false"
-                    android:inputType="textMultiLine"
-                    android:imeOptions="actionDone"/>
-
-            </TableRow>
 
 
         </TableLayout>
