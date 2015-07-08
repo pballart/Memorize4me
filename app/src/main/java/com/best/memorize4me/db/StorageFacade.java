@@ -11,6 +11,8 @@ import com.best.memorize4me.db.table.Category;
 
 import java.util.ArrayList;
 
+import static com.best.memorize4me.db.table.SearchItem.*;
+
 /**
  * Created by konstantin.bogdanov on 07.07.2015.
  */
@@ -106,19 +108,19 @@ public class StorageFacade implements AppInterface{
     @Override
     public void createSearchItem(SearchItem searchItem, com.best.memorize4me.db.model.Category category) {
         ContentValues values = new ContentValues();
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_CATEGORY_ID, category.id);
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_NAME, searchItem.contact.firstName + " " + searchItem.contact.lastName );
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DATE, searchItem.date);
+        values.put(SearchItemEntry.COLUMN_CATEGORY_ID, category.id);
+        values.put(SearchItemEntry.COLUMN_NAME, searchItem.contact.firstName + " " + searchItem.contact.lastName );
+        values.put(SearchItemEntry.COLUMN_DATE, searchItem.date);
 //        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_LOCATION, String.valueOf(searchItem.location));
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_EMAIL, searchItem.contact.email);
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_PHONE_NUMBER, searchItem.contact.phoneNumber);
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DATE, searchItem.date);
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DESCRIPTION, searchItem.description);
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_PRICE, searchItem.price);
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_RATE, searchItem.rate);
-        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_TITLE, searchItem.title);
+        values.put(SearchItemEntry.COLUMN_EMAIL, searchItem.contact.email);
+        values.put(SearchItemEntry.COLUMN_PHONE_NUMBER, searchItem.contact.phoneNumber);
+        values.put(SearchItemEntry.COLUMN_DATE, searchItem.date);
+        values.put(SearchItemEntry.COLUMN_DESCRIPTION, searchItem.description);
+        values.put(SearchItemEntry.COLUMN_PRICE, searchItem.price);
+        values.put(SearchItemEntry.COLUMN_RATE, searchItem.rate);
+        values.put(SearchItemEntry.COLUMN_TITLE, searchItem.title);
         getDatabase().insert(
-                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.TABLE_NAME,
+                SearchItemEntry.TABLE_NAME,
                 null,
                 values
         );
@@ -126,7 +128,11 @@ public class StorageFacade implements AppInterface{
 
     @Override
     public void removeSearchItem(long searchItemId) {
-
+        getDatabase().delete(
+                SearchItemEntry.TABLE_NAME,
+                SearchItemEntry.COLUMN_ID + " = ?",
+                new String[] { String.valueOf(searchItemId) }
+        );
     }
 
     @Override
