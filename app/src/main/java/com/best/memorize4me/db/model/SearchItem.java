@@ -11,7 +11,7 @@ public class SearchItem {
     public long id;
     public long categoryId;
     public String title;
-    public Long date;
+    public long date;
     public float price;
     public float rate;
     public Contact contact;

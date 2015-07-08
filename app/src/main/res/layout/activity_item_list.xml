@@ -38,7 +38,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/categoryListView"
+        android:id="@+id/itemListView"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/headerSection" />
 

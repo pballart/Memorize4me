@@ -3,12 +3,19 @@ package com.best.memorize4me;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.best.memorize4me.db.adapters.CategoryAdapter;
+import com.best.memorize4me.db.adapters.ItemAdapter;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
+import com.best.memorize4me.db.model.SearchItem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +44,29 @@ public class ItemList extends ActionBarActivity {
 
         TextView dateTV = (TextView)findViewById(R.id.textViewDate);
         dateTV.setText(date);
+
+        ArrayList<SearchItem> searchItems = FakeDB.getSearchItemByCategory(cat.id);
+        // Create the adapter to convert the array to views
+        ItemAdapter adapter = new ItemAdapter(this, searchItems);
+        adapter.category = cat;
+        // Attach the adapter to a ListView
+        final ListView listView = (ListView) findViewById(R.id.itemListView);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Object o = listView.getItemAtPosition(position);
+               /*
+                Category cat = (Category) o;
+                Intent myIntent = new Intent(CategoryList.this, ItemList.class);
+                myIntent.putExtra("category_id", cat.id);
+                CategoryList.this.startActivity(myIntent);
+                */
+                Log.d("caca","caca");
+            }
+        });
     }
 
     @Override
