@@ -8,8 +8,9 @@
     //Left linear layout
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="0.6"
         android:id="@+id/itemLeftLayout">
 
         <TextView
@@ -34,8 +35,9 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="0.3"
         android:layout_gravity="right">
 
         <TextView
@@ -53,10 +55,11 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:background="@drawable/right_arrow_icon"
+        android:layout_weight="0.1"
         android:layout_gravity="center_horizontal" />
 
 

@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.best.memorize4me.db.adapters.CategoryAdapter;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
@@ -28,8 +31,21 @@ public class CategoryList extends ActionBarActivity {
 // Create the adapter to convert the array to views
         CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
 // Attach the adapter to a ListView
-        ListView listView = (ListView) findViewById(R.id.categoryListView);
+         final ListView listView = (ListView) findViewById(R.id.categoryListView);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Object o = listView.getItemAtPosition(position);
+                Category cat = (Category)o;
+                Intent myIntent = new Intent(CategoryList.this, ItemList.class);
+                myIntent.putExtra("category_id",cat.id);
+                CategoryList.this.startActivity(myIntent);
+                Log.d("caca", String.valueOf(cat.id));
+            }
+        });
 
     }
 

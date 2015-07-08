@@ -1,9 +1,18 @@
 package com.best.memorize4me;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
+import com.best.memorize4me.db.model.Category;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 
 public class ItemList extends ActionBarActivity {
@@ -12,6 +21,22 @@ public class ItemList extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
+
+        ArrayList<Category> arrayOfCategories = new ArrayList<Category>();
+        arrayOfCategories = FakeDB.getCategories();
+
+        Intent intent = getIntent();
+        long id = intent.getLongExtra("category_id", 1);
+        Category cat = arrayOfCategories.get((int) (Long.valueOf(id) - 1));
+
+        TextView categoryTV = (TextView)findViewById(R.id.textViewCategory);
+        categoryTV.setText(cat.title);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date(cat.date * 1000));
+
+        TextView dateTV = (TextView)findViewById(R.id.textViewDate);
+        dateTV.setText(date);
     }
 
     @Override

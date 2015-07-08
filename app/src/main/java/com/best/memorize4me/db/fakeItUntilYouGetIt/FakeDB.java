@@ -13,17 +13,17 @@ public class FakeDB {
         Category cat1 = new Category();
         cat1.id = 1;
         cat1.title = "Hello";
-        cat1.date = 12345;
+        cat1.date = 1436343416;
         arrayList.add(cat1);
         Category cat2 = new Category();
         cat2.id = 2;
         cat2.title = "Bye";
-        cat2.date = 23456;
+        cat2.date = 36343413;
         arrayList.add(cat2);
         Category cat3 = new Category();
         cat3.id = 3;
         cat3.title = "Montenigga";
-        cat3.date = 452345;
+        cat3.date = 1236343222;
         arrayList.add(cat3);
         return arrayList;
     }
