@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.best.memorize4me.MemorizeForMeApplication;
 import com.best.memorize4me.db.interfaces.AppInterface;
+import com.best.memorize4me.db.model.Contact;
 import com.best.memorize4me.db.model.SearchItem;
 import com.best.memorize4me.db.table.Category;
 
@@ -67,7 +68,53 @@ public class StorageFacade implements AppInterface{
 
     @Override
     public ArrayList<SearchItem> getSearchItemByCategory(long categoryId) {
-        return null;
+        ArrayList<SearchItem> searchItemList = new ArrayList<SearchItem>();
+        String[] projection = {
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_ID,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_CATEGORY_ID,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_TITLE,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DATE,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_PRICE,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_RATE,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_NAME,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_PHONE_NUMBER,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_EMAIL,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DESCRIPTION,
+                //com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_LOCATION
+                SearchItemEntry.COLUMN_MULTILINE_DESCRIPTION
+        };
+        Cursor cursor = getDatabase().query(
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.TABLE_NAME,
+                projection,
+                "WHERE " + com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_CATEGORY_ID + " = ?",
+                new String[] { String.valueOf(categoryId) },
+                null,
+                null,
+                null
+        );
+        if (cursor.moveToFirst()) {
+            do {
+                SearchItem searchItem = new SearchItem(
+                        Long.parseLong(cursor.getString(0)), //id
+                        Long.parseLong(cursor.getString(1)), //category_id
+                        cursor.getString(2), //title
+                        Long.parseLong(cursor.getString(3)), //date
+                        Float.parseFloat(cursor.getString(4)), //price
+                        Float.parseFloat(cursor.getString(5)), //rate
+                        cursor.getString(6), //contact name
+                        cursor.getString(7), //phone number
+                        cursor.getString(8), //email
+                        cursor.getString(9), //description
+                        null,
+                        //cursor.getString(10) LOCATION
+                        cursor.getString(10), //multiline description
+                        null //image urls
+                );
+                searchItemList.add(searchItem);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return searchItemList;
     }
 
     @Override
@@ -109,7 +156,7 @@ public class StorageFacade implements AppInterface{
     public void createSearchItem(SearchItem searchItem, com.best.memorize4me.db.model.Category category) {
         ContentValues values = new ContentValues();
         values.put(SearchItemEntry.COLUMN_CATEGORY_ID, category.id);
-        values.put(SearchItemEntry.COLUMN_NAME, searchItem.contact.name);
+        values.put(SearchItemEntry.COLUMN_NAME, searchItem.contact.name );
         values.put(SearchItemEntry.COLUMN_DATE, searchItem.date);
 //        values.put(com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_LOCATION, String.valueOf(searchItem.location));
         values.put(SearchItemEntry.COLUMN_EMAIL, searchItem.contact.email);
