@@ -1,5 +1,6 @@
 package com.best.memorize4me;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Debug;
 import android.support.v7.app.ActionBarActivity;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
@@ -57,11 +59,15 @@ public class NewCategory extends ActionBarActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.saveCategory){
-            View v = findViewById(R.id.saveCategory);
-            Category category = getCategoryFromFields();
-            StorageFacade.getInstance().createCategory(category);
-            this.finish();
-            return true;
+            if (titleTxt.getText().toString().length() == 0) {
+                this.showToastWithText("Error: one of the text fields is empty");
+            } else {
+                View v = findViewById(R.id.saveCategory);
+                Category category = getCategoryFromFields();
+                StorageFacade.getInstance().createCategory(category);
+                this.finish();
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -75,5 +81,13 @@ public class NewCategory extends ActionBarActivity {
         calendar.set(year, month, day);
 
         return calendar.getTime();
+    }
+
+    public void showToastWithText(String text) {
+        Context context = getApplicationContext();
+        CharSequence textToast = text;
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, textToast, duration);
+        toast.show();
     }
 }

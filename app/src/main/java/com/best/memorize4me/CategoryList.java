@@ -1,5 +1,7 @@
 package com.best.memorize4me;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,17 +23,19 @@ import java.util.ArrayList;
 
 public class CategoryList extends ActionBarActivity {
 
+    ArrayList<Category> arrayOfCategories;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_list);
 
         // Construct the data source
-        ArrayList<Category> arrayOfCategories;
+
         arrayOfCategories = StorageFacade.getInstance().getCategories();
-// Create the adapter to convert the array to views
-        CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
-// Attach the adapter to a ListView
+        // Create the adapter to convert the array to views
+        final CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
+        // Attach the adapter to a ListView
          final ListView listView = (ListView) findViewById(R.id.categoryListView);
         listView.setAdapter(adapter);
 
@@ -40,13 +44,33 @@ public class CategoryList extends ActionBarActivity {
                                     int position, long id) {
 
                 Object o = listView.getItemAtPosition(position);
-                Category cat = (Category)o;
+                Category cat = (Category) o;
                 Intent myIntent = new Intent(CategoryList.this, ItemList.class);
-                myIntent.putExtra("category_id",cat.id);
+                myIntent.putExtra("category_id", cat.id);
                 CategoryList.this.startActivity(myIntent);
                 Log.d("caca", String.valueOf(cat.id));
             }
         });
+
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder adb = new AlertDialog.Builder(CategoryList.this);
+                adb.setTitle("Delete?");
+                Category c = arrayOfCategories.get(position);
+                adb.setMessage("Are you sure you want to delete " + c.title);
+                final int positionToRemove = position;
+                adb.setNegativeButton("Cancel", null);
+                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //TODO: remove from database
+                        adapter.notifyDataSetChanged();
+                    }});
+                adb.show();
+                return true;
+            }
+        });
+
 
     }
 

@@ -1,6 +1,9 @@
 package com.best.memorize4me.db.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,4 +45,5 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         // Return the completed view to render on screen
         return convertView;
     }
+
 }
