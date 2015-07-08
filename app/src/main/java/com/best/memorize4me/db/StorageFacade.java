@@ -137,6 +137,21 @@ public class StorageFacade implements AppInterface{
 
     @Override
     public void updateSearchItem(SearchItem searchItem) {
-
+        ContentValues values = new ContentValues();
+        values.put(SearchItemEntry.COLUMN_NAME, searchItem.contact.name);
+        values.put(SearchItemEntry.COLUMN_DATE, searchItem.date);
+        values.put(SearchItemEntry.COLUMN_EMAIL, searchItem.contact.email);
+        values.put(SearchItemEntry.COLUMN_PHONE_NUMBER, searchItem.contact.phoneNumber);
+        values.put(SearchItemEntry.COLUMN_DATE, searchItem.date);
+        values.put(SearchItemEntry.COLUMN_DESCRIPTION, searchItem.description);
+        values.put(SearchItemEntry.COLUMN_PRICE, searchItem.price);
+        values.put(SearchItemEntry.COLUMN_RATE, searchItem.rate);
+        values.put(SearchItemEntry.COLUMN_TITLE, searchItem.title);
+        getDatabase().update(
+                Category.CategoryEntry.TABLE_NAME,
+                values,
+                Category.CategoryEntry.COLUMN_ID + " = ?",
+                new String[] { String.valueOf(searchItem.id) }
+        );
     }
 }
