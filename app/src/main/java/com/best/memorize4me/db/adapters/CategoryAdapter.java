@@ -13,8 +13,8 @@ import android.widget.TextView;
 import com.best.memorize4me.R;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
+import com.best.memorize4me.util.DateUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +26,6 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         super(context, 0, category);
     }
 
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -41,7 +40,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         TextView date = (TextView) convertView.findViewById(R.id.categoryDateText);
         // Populate the data into the template view using the data object
         title.setText(category.title);
-        date.setText(simpleDateFormat.format(category.getDate()));
+        date.setText(DateUtils.dateToString(category.getDate()));
         // Return the completed view to render on screen
         return convertView;
     }

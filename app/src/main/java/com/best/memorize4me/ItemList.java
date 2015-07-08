@@ -12,47 +12,39 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.best.memorize4me.db.adapters.CategoryAdapter;
+import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.adapters.ItemAdapter;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
 import com.best.memorize4me.db.model.SearchItem;
+import com.best.memorize4me.util.DateUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 public class ItemList extends ActionBarActivity {
+    private Category currentCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
-
-        ArrayList<Category> arrayOfCategories = new ArrayList<Category>();
-        arrayOfCategories = FakeDB.getCategories();
-
         Intent intent = getIntent();
-        long id = intent.getLongExtra("category_id", 1);
-        Category cat = arrayOfCategories.get((int) (Long.valueOf(id) - 1));
+        currentCategory = (Category) intent.getSerializableExtra("category");
 
         TextView categoryTV = (TextView)findViewById(R.id.textViewCategory);
-        categoryTV.setText(cat.title);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String date = sdf.format(new Date(cat.date * 1000));
+        categoryTV.setText(currentCategory.title);
 
         TextView dateTV = (TextView)findViewById(R.id.textViewDate);
-        dateTV.setText(date);
+        dateTV.setText(DateUtils.dateToString(currentCategory.getDate()));
 
-        ArrayList<SearchItem> searchItems = FakeDB.getSearchItemByCategory(cat.id);
-        // Create the adapter to convert the array to views
-        ItemAdapter adapter = new ItemAdapter(this, searchItems);
-        adapter.category = cat;
-        // Attach the adapter to a ListView
         final ListView listView = (ListView) findViewById(R.id.itemListView);
-        listView.setAdapter(adapter);
+        ArrayList<SearchItem> searchItems = StorageFacade.getInstance().getSearchItemByCategory(currentCategory.id);
+
+        if (searchItems != null) {
+            ItemAdapter adapter = new ItemAdapter(this, searchItems);
+            listView.setAdapter(adapter);
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -65,7 +57,7 @@ public class ItemList extends ActionBarActivity {
                 myIntent.putExtra("category_id", cat.id);
                 CategoryList.this.startActivity(myIntent);
                 */
-                Log.d("caca","caca");
+                Log.d("caca", "caca");
             }
         });
     }
@@ -86,9 +78,10 @@ public class ItemList extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add_category) {
-            Log.d("add category pressed", "hostia");
-            Intent myIntent = new Intent(ItemList.this, Create_new_item.class);
-            startActivity(myIntent);
+            Intent intent = new Intent(this, Create_new_item.class);
+            intent.putExtra("category", currentCategory);
+            startActivity(intent);
+            finish();
             return true;
         }
 

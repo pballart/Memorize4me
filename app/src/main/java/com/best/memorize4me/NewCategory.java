@@ -2,7 +2,6 @@ package com.best.memorize4me;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Debug;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,10 +14,8 @@ import android.widget.Toast;
 
 import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
-import com.best.memorize4me.db.interfaces.AppInterface;
 import com.best.memorize4me.db.model.Category;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 

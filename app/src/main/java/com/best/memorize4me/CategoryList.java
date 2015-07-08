@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.adapters.CategoryAdapter;
@@ -29,13 +28,19 @@ public class CategoryList extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_list);
+        final ListView listView = (ListView) findViewById(R.id.categoryListView);
+        ArrayList<Category> arrayOfCategories = StorageFacade.getInstance().getCategories();
+        if (arrayOfCategories != null) {
+            CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
+            listView.setAdapter(adapter);
+        }
 
         // Construct the data source
-
+        ArrayList<Category> arrayOfCategories;
         arrayOfCategories = StorageFacade.getInstance().getCategories();
-        // Create the adapter to convert the array to views
-        final CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
-        // Attach the adapter to a ListView
+// Create the adapter to convert the array to views
+        CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
+// Attach the adapter to a ListView
          final ListView listView = (ListView) findViewById(R.id.categoryListView);
         listView.setAdapter(adapter);
 
@@ -46,7 +51,7 @@ public class CategoryList extends ActionBarActivity {
                 Object o = listView.getItemAtPosition(position);
                 Category cat = (Category) o;
                 Intent myIntent = new Intent(CategoryList.this, ItemList.class);
-                myIntent.putExtra("category_id", cat.id);
+                myIntent.putExtra("category", cat);
                 CategoryList.this.startActivity(myIntent);
                 Log.d("caca", String.valueOf(cat.id));
             }
