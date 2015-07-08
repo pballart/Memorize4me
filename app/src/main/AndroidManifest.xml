@@ -24,7 +24,8 @@
         </activity>
         <activity
             android:name=".Create_new_item"
-            android:label="@string/title_activity_create_new_item" >
+            android:label="@string/title_activity_create_new_item"
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name=".ItemList"

@@ -19,7 +19,9 @@ public final class SearchItem {
         public static final String COLUMN_DATE = "date";
         public static final String COLUMN_PRICE = "price";
         public static final String COLUMN_RATE = "rate";
-        public static final String COLUMN_CONTACT = "contact";
+        public static final String COLUMN_NAME = "contact";
+        public static final String COLUMN_PHONE_NUMBER = "phone_number";
+        public static final String COLUMN_EMAIL = "email";
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_LOCATION = "location";
 

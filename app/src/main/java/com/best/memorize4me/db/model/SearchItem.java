@@ -13,9 +13,10 @@ public class SearchItem {
     public String title;
     public Long date;
     public float price;
-    public int rate;
+    public float rate;
     public Contact contact;
     public String description;
     public  Location location;
+    public String multilineDescription;
     public ArrayList<SearchItemPhoto> imageUrls;
 }

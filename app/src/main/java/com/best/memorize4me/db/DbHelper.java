@@ -22,7 +22,7 @@ public class DbHelper extends SQLiteOpenHelper{
     private static final String DATE_TYPE = " DATE";
 
     private static final String SQL_CREATE_CATEGORIES =
-            "CREATE TABLE" + CategoryEntry.TABLE_NAME + " (" +
+            "CREATE TABLE " + CategoryEntry.TABLE_NAME + " (" +
                     CategoryEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
                     CategoryEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
                     CategoryEntry.COLUMN_DATE + INTEGER_TYPE +
@@ -30,21 +30,23 @@ public class DbHelper extends SQLiteOpenHelper{
             ;
 
     private static final  String SQL_CREATE_SEARCH_ITEMS =
-            "CREATE TABLE" + SearchItemEntry.TABLE_NAME + " (" +
+            "CREATE TABLE " + SearchItemEntry.TABLE_NAME + " (" +
                     SearchItemEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
-                    SearchItemEntry.COLUMN_CATEGORY_ID + "INTEGER," +
+                    SearchItemEntry.COLUMN_CATEGORY_ID + INTEGER_TYPE +
                     SearchItemEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_DATE + DATE_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_PRICE + INTEGER_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_RATE + INTEGER_TYPE + COMMA_SEP +
-                    SearchItemEntry.COLUMN_CONTACT + TEXT_TYPE + COMMA_SEP +
+                    SearchItemEntry.COLUMN_NAME + TEXT_TYPE + COMMA_SEP +
+                    SearchItemEntry.COLUMN_EMAIL + TEXT_TYPE + COMMA_SEP +
+                    SearchItemEntry.COLUMN_PHONE_NUMBER + TEXT_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_LOCATION + TEXT_TYPE +
                     " )"
             ;
 
     private static final String SQL_CREATE_SEARCH_ITEM_PHOTOS =
-            "CREATE TABLE" + SearchItemPhotoEntry.TABLE_NAME + " (" +
+            "CREATE TABLE " + SearchItemPhotoEntry.TABLE_NAME + " (" +
                     SearchItemPhotoEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
                     SearchItemPhotoEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
                     SearchItemPhotoEntry.COLUMN_URL + TEXT_TYPE + COMMA_SEP +

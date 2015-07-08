@@ -17,7 +17,7 @@ public interface AppInterface {
     public void createCategory(Category category);
     public void removeCategory(long categoryId);
     public void updateCategory(Category category);
-    public void createSearchItem(SearchItem searchItem);
+    public void createSearchItem(SearchItem searchItem, Category category);
     public void removeSearchItem(long searchItemId);
     public void updateSearchItem(SearchItem searchItem);
 }
