@@ -8,10 +8,16 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <TableLayout
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/tableView">
              <TableRow>
 
              <TextView
@@ -19,7 +25,8 @@
                  android:layout_height="wrap_content"
                  android:textAppearance="?android:attr/textAppearanceLarge"
                  android:id="@+id/categoryTitle"
-                 android:text = "category title"/>
+                 android:text = ""
+                 />
 
 
              </TableRow>
@@ -30,7 +37,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/categoryDate"
                     android:inputType="date"
-                    android:text="categorydate" />
+                    android:text="" />
 
             </TableRow>
             <TableRow>
@@ -47,8 +54,10 @@
                     android:text=""
                     android:layout_height="wrap_content"
                     android:id="@+id/editTitle"
-                    android:layout_column="15"
-                    android:singleLine="true"
+
+                    android:layout_column="5"
+                    android:ems="10"
+                    android:singleLine="false"
                     android:imeOptions="actionNext" />
 
             </TableRow>
@@ -67,9 +76,9 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/editDescription"
                     android:text=""
-                    android:layout_column="15"
-                    android:singleLine="true"
-                    android:imeOptions="actionNext"/>
+                    android:singleLine="false"
+                    android:ems="10"
+                    android:layout_column="5"/>
 
             </TableRow>
             <TableRow>
@@ -86,8 +95,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/editPrice"
-                    android:layout_column="15"
-                    android:inputType="numberDecimal" />
+                    android:layout_column="1"
+                    android:singleLine="false"
+                    android:ems="10"
+                    android:inputType="numberDecimal"
+                    android:layout_span="5" />
+
+
 
             </TableRow>
             <TableRow>
@@ -103,10 +117,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/editContact"
+                    android:singleLine="false"
                     android:text=""
-                    android:layout_column="15"
-                    android:inputType="textPersonName"
-                    android:imeOptions="actionNext"/>
+                    android:layout_column="5"
+                    android:ems="10"/>
 
             </TableRow>
             <TableRow>
@@ -122,10 +136,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/editTel"
-                    android:layout_column="15"
+                    android:layout_column="5"
                     android:text=""
-                    android:inputType="phone"
-                    android:imeOptions="actionNext"/>
+                    android:singleLine="false"
+                    android:ems="10"
+                    android:inputType="phone"/>
 
             </TableRow>
             <TableRow>
@@ -142,9 +157,10 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:id="@+id/editMail"
-                    android:layout_column="15"
-                    android:inputType="textEmailAddress"
-                    android:imeOptions="actionNext" />
+                    android:singleLine="false"
+                    android:ems="10"
+                    android:layout_column="5"
+                    android:inputType="textEmailAddress"/>
 
             </TableRow>
 
@@ -162,27 +178,25 @@
                     android:text=""
                     android:layout_height="wrap_content"
                     android:id="@+id/editMultiline"
-                    android:layout_column="15"
+                    android:ems="10"
+                    android:layout_column="5"
+                    android:singleLine="false"
                     android:inputType="textMultiLine"
                     android:imeOptions="actionDone"/>
 
             </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Rating"
-                    android:id="@+id/itemRate" />
-                <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar"
-                    android:layout_column="15" />
-            </TableRow>
-        </TableLayout>
 
+
+        </TableLayout>
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                android:numStars="5"
+                />
+        </LinearLayout>
     </ScrollView>
+
 
 
 
