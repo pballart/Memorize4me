@@ -32,7 +32,7 @@ public class ItemList extends ActionBarActivity {
         setContentView(R.layout.activity_item_list);
         
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME);
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setIcon(R.mipmap.ic_launcher);
 
