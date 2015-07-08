@@ -28,7 +28,6 @@ public class Create_new_item extends ActionBarActivity {
     private EditText contact;
     private EditText tel;
     private EditText mail;
-    private EditText longdescription;
     private EditText price;
 
     @Override
@@ -44,7 +43,6 @@ public class Create_new_item extends ActionBarActivity {
         contact = (EditText) findViewById(R.id.editContact);
         tel = (EditText) findViewById(R.id.editTel);
         mail = (EditText) findViewById(R.id.editMail);
-        longdescription = (EditText) findViewById(R.id.editMultiline);
         price = (EditText) findViewById(R.id.editPrice);
         categoryTitle.setText(currentCategory.title);
         categoryDate.setText(DateUtils.dateToString(currentCategory.date));
