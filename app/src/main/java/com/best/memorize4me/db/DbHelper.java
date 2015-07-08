@@ -15,7 +15,7 @@ import static com.best.memorize4me.db.table.SearchItemPhoto.*;
 
 public class DbHelper extends SQLiteOpenHelper{
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String INTEGER_TYPE = " INTEGER";
@@ -77,6 +77,9 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(SQL_DELETE_SEARCH_ITEM_PHOTOS);
+        db.execSQL(SQL_DELETE_SEARCH_ITEMS);
+        db.execSQL(SQL_DELETE_CATEGORIES);
         onCreate(db);
     }
 
