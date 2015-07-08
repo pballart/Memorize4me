@@ -19,6 +19,7 @@ import java.util.Calendar;
 
 
 public class Create_new_item extends ActionBarActivity {
+    private Category currentCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class Create_new_item extends ActionBarActivity {
         setContentView(R.layout.activity_create_new_item);
         TextView categoryTitle = (TextView) findViewById(R.id.categoryTitle);
         TextView categoryDate = (TextView) findViewById(R.id.categoryDate);
-
+        currentCategory = (Category) getIntent().getSerializableExtra("category");
         //todo:  get from DB category and obtain date and title
     }
 
@@ -75,6 +76,7 @@ public class Create_new_item extends ActionBarActivity {
             }
             //todo save newItem to database
             Intent i = new Intent (this, ItemList.class);
+            i.putExtra("category", currentCategory);
             startActivity(i);
         }
 

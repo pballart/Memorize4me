@@ -23,26 +23,18 @@ import java.util.ArrayList;
 public class CategoryList extends ActionBarActivity {
 
     ArrayList<Category> arrayOfCategories;
+    CategoryAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_list);
         final ListView listView = (ListView) findViewById(R.id.categoryListView);
-        ArrayList<Category> arrayOfCategories = StorageFacade.getInstance().getCategories();
+        arrayOfCategories = StorageFacade.getInstance().getCategories();
         if (arrayOfCategories != null) {
-            CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
+            adapter = new CategoryAdapter(this, arrayOfCategories);
             listView.setAdapter(adapter);
         }
-
-        // Construct the data source
-        ArrayList<Category> arrayOfCategories;
-        arrayOfCategories = StorageFacade.getInstance().getCategories();
-// Create the adapter to convert the array to views
-        CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
-// Attach the adapter to a ListView
-         final ListView listView = (ListView) findViewById(R.id.categoryListView);
-        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -61,16 +53,17 @@ public class CategoryList extends ActionBarActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder adb = new AlertDialog.Builder(CategoryList.this);
+                final Category currentCategory = arrayOfCategories.get(position);
                 adb.setTitle("Delete?");
-                Category c = arrayOfCategories.get(position);
-                adb.setMessage("Are you sure you want to delete " + c.title);
-                final int positionToRemove = position;
+                adb.setMessage("Are you sure you want to delete " + currentCategory.title);
                 adb.setNegativeButton("Cancel", null);
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        //TODO: remove from database
+                        StorageFacade.getInstance().removeCategory(currentCategory.id);
+                        adapter.remove(currentCategory);
                         adapter.notifyDataSetChanged();
-                    }});
+                    }
+                });
                 adb.show();
                 return true;
             }
