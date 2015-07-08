@@ -105,8 +105,7 @@ public class StorageFacade implements AppInterface{
                         cursor.getString(7), //phone number
                         cursor.getString(8), //email
                         cursor.getString(9), //description
-                        null,
-                        //cursor.getString(10) LOCATION
+                        null, //location
                         cursor.getString(10), //multiline description
                         null //image urls
                 );
