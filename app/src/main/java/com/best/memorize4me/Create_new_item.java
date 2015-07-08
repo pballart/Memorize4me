@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.best.memorize4me.db.model.Category;
 import com.best.memorize4me.db.model.Contact;
 import com.best.memorize4me.db.model.SearchItem;
+import com.best.memorize4me.util.DateUtils;
 
 import java.util.Calendar;
 
@@ -28,6 +29,8 @@ public class Create_new_item extends ActionBarActivity {
         TextView categoryTitle = (TextView) findViewById(R.id.categoryTitle);
         TextView categoryDate = (TextView) findViewById(R.id.categoryDate);
         currentCategory = (Category) getIntent().getSerializableExtra("category");
+        categoryTitle.setText(currentCategory.title);
+        categoryDate.setText(DateUtils.dateToString(currentCategory.getDate()));
         //todo:  get from DB category and obtain date and title
     }
 
