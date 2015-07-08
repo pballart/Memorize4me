@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.adapters.CategoryAdapter;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
@@ -26,8 +27,8 @@ public class CategoryList extends ActionBarActivity {
         setContentView(R.layout.activity_search_list);
 
         // Construct the data source
-        ArrayList<Category> arrayOfCategories = new ArrayList<Category>();
-        arrayOfCategories = FakeDB.getCategories();
+        ArrayList<Category> arrayOfCategories;
+        arrayOfCategories = StorageFacade.getInstance().getCategories();
 // Create the adapter to convert the array to views
         CategoryAdapter adapter = new CategoryAdapter(this, arrayOfCategories);
 // Attach the adapter to a ListView
@@ -67,7 +68,7 @@ public class CategoryList extends ActionBarActivity {
         if (id == R.id.action_add_category) {
             Log.d("add category pressed", "hostia");
             Intent myIntent = new Intent(CategoryList.this, NewCategory.class);
-            CategoryList.this.startActivity(myIntent);
+            startActivity(myIntent);
             return true;
         }
 

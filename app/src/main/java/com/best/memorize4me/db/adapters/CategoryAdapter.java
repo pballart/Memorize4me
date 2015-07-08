@@ -11,6 +11,7 @@ import com.best.memorize4me.R;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -22,10 +23,12 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         super(context, 0, category);
     }
 
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Category category = FakeDB.getCategories().get(position);
+        Category category = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.category_list_adapter, parent, false);
@@ -35,7 +38,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
         TextView date = (TextView) convertView.findViewById(R.id.categoryDateText);
         // Populate the data into the template view using the data object
         title.setText(category.title);
-        date.setText(String.valueOf(category.date));
+        date.setText(simpleDateFormat.format(category.getDate()));
         // Return the completed view to render on screen
         return convertView;
     }

@@ -33,12 +33,11 @@
             android:layout_width="187dp"
             android:layout_height="wrap_content"
             android:id="@+id/editText"
-            android:layout_alignBottom="@+id/newCategoryTitle"
-            android:layout_toRightOf="@+id/newCategoryTitle"
-            android:layout_toEndOf="@+id/newCategoryTitle"
             android:inputType="text"
             android:imeOptions="actionDone"
-            android:layout_marginLeft="4px"/>
+            android:layout_alignBottom="@+id/newCategoryTitle"
+            android:layout_toRightOf="@+id/newCategoryDate"
+            android:layout_toEndOf="@+id/newCategoryDate" />
 
         <TextView
             android:layout_width="wrap_content"
