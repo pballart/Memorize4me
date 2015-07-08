@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -85,9 +86,19 @@ public class ItemList extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add_category) {
+            Log.d("add category pressed", "hostia");
+            Intent myIntent = new Intent(ItemList.this, Create_new_item.class);
+            startActivity(myIntent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent myIntent = new Intent(ItemList.this, CategoryList.class);
+        startActivity(myIntent);
     }
 }
