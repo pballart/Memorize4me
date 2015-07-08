@@ -7,4 +7,14 @@ public class Category {
     public long id;
     public String title;
     public long date;
+
+    public Category(long id, String title, long date) {
+        this.id = id;
+        this.title = title;
+        this.date = date;
+    }
+
+    public Category() {
+
+    }
 }
