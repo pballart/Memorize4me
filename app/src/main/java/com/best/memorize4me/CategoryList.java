@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.adapters.CategoryAdapter;
@@ -26,6 +28,36 @@ public class CategoryList extends ActionBarActivity {
     CategoryAdapter adapter;
 
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        int menuItemIndex = item.getItemId();
+
+        Category category = adapter.getItem(info.position);
+        if (item.getItemId()==R.id.edit_category) {
+            Intent myIntent = new Intent(CategoryList.this, NewCategory.class);
+            myIntent.putExtra("category", category);
+            startActivity(myIntent);
+            finish();
+
+        } else if (item.getItemId()==R.id.remove_category) {
+            adapter.remove(category);
+            adapter.notifyDataSetChanged();
+            arrayOfCategories.remove(category);
+            StorageFacade.getInstance().removeCategory(category.id);
+
+        }
+
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_list);
@@ -34,6 +66,7 @@ public class CategoryList extends ActionBarActivity {
         if (arrayOfCategories != null) {
             adapter = new CategoryAdapter(this, arrayOfCategories);
             listView.setAdapter(adapter);
+            registerForContextMenu(listView);
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -50,9 +83,12 @@ public class CategoryList extends ActionBarActivity {
         });
 
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+
+/*        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                AlertDialog.Builder adb = new AlertDialog.Builder(CategoryList.this);
+
+                *//*AlertDialog.Builder adb = new AlertDialog.Builder(CategoryList.this);
                 final Category currentCategory = arrayOfCategories.get(position);
                 adb.setTitle("Delete?");
                 adb.setMessage("Are you sure you want to delete " + currentCategory.title);
@@ -64,11 +100,29 @@ public class CategoryList extends ActionBarActivity {
                         adapter.notifyDataSetChanged();
                     }
                 });
-                adb.show();
+                adb.show();*//*
                 return true;
             }
         });
+        });*/
+
+
     }
+
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v,
+//                                    ContextMenu.ContextMenuInfo menuInfo) {
+//        if (v.getId()==R.id.edit_category) {
+//            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+////            menu.setHeaderTitle(Countries[info.position]);
+////            String[] menuItems = getResources().getStringArray(R.array.menu);
+////            for (int i = 0; i<menuItems.length; i++) {
+////                menu.add(Menu.NONE, i, i, menuItems[i]);
+////            }
+//        } else if (v.getId()==R.id.remove_category) {
+//
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
