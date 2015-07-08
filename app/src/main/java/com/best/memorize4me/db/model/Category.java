@@ -8,13 +8,14 @@ public class Category {
     public String title;
     public long date;
 
+    public Category() {
+
+    }
+
     public Category(long id, String title, long date) {
         this.id = id;
         this.title = title;
         this.date = date;
     }
 
-    public Category() {
-
-    }
 }

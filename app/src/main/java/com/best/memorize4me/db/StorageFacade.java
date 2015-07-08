@@ -49,15 +49,17 @@ public class StorageFacade implements AppInterface{
                 null,
                 null
         );
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            com.best.memorize4me.db.model.Category category = new com.best.memorize4me.db.model.Category (
-                    Long.parseLong(cursor.getString(0)),
-                    cursor.getString(1),
-                    Long.parseLong(cursor.getString(2))
-            );
-            categoryList.add(category);
+        if (cursor.moveToFirst()) {
+            do {
+                com.best.memorize4me.db.model.Category category = new com.best.memorize4me.db.model.Category(
+                        Long.parseLong(cursor.getString(0)),
+                        cursor.getString(1),
+                        Long.parseLong(cursor.getString(2))
+                );
+                categoryList.add(category);
+            } while (cursor.moveToNext());
         }
+        cursor.close();
         return categoryList;
     }
 
@@ -69,7 +71,6 @@ public class StorageFacade implements AppInterface{
     @Override
     public void createCategory(com.best.memorize4me.db.model.Category category) {
         ContentValues values = new ContentValues();
-        values.put(Category.CategoryEntry.COLUMN_ID, category.id);
         values.put(Category.CategoryEntry.COLUMN_TITLE, category.title);
         values.put(Category.CategoryEntry.COLUMN_DATE, category.date);
         getDatabase().insert(
@@ -81,12 +82,24 @@ public class StorageFacade implements AppInterface{
 
     @Override
     public void removeCategory(long categoryId) {
-
+        getDatabase().delete(
+                Category.CategoryEntry.TABLE_NAME,
+                Category.CategoryEntry.COLUMN_ID + " = ?",
+                new String[] { String.valueOf(categoryId) }
+        );
     }
 
     @Override
     public void updateCategory(com.best.memorize4me.db.model.Category category) {
-
+        ContentValues values = new ContentValues();
+        values.put(Category.CategoryEntry.COLUMN_TITLE, category.title);
+        values.put(Category.CategoryEntry.COLUMN_DATE, category.date);
+        getDatabase().update(
+                Category.CategoryEntry.TABLE_NAME,
+                values,
+                Category.CategoryEntry.COLUMN_ID + " = ?",
+                new String[] { String.valueOf(category.id) }
+        );
     }
 
 
