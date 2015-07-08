@@ -23,13 +23,21 @@ import java.util.Date;
 public class NewCategory extends ActionBarActivity {
     private EditText titleTxt;
     private DatePicker datePicker;
+    private Category currentCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_category);
+        currentCategory = (Category) getIntent().getSerializableExtra("category");
         titleTxt = (EditText) findViewById(R.id.editText);
         datePicker = (DatePicker) findViewById(R.id.datePicker);
+        if (currentCategory != null && savedInstanceState == null) {
+            titleTxt.setText(currentCategory.title);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(currentCategory.getDate());
+            datePicker.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        }
     }
 
     private Category getCategoryFromFields() {
@@ -61,7 +69,13 @@ public class NewCategory extends ActionBarActivity {
             } else {
                 View v = findViewById(R.id.saveCategory);
                 Category category = getCategoryFromFields();
-                StorageFacade.getInstance().createCategory(category);
+                if (currentCategory != null) {
+                    category.id = currentCategory.id;
+                    StorageFacade.getInstance().updateCategory(category);
+                }
+                else {
+                    StorageFacade.getInstance().createCategory(category);
+                }
                 Intent intent = new Intent(this, CategoryList.class);
                 startActivity(intent);
                 finish();

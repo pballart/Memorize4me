@@ -68,8 +68,6 @@ public class CategoryList extends ActionBarActivity {
                 return true;
             }
         });
-
-
     }
 
     @Override
@@ -94,7 +92,6 @@ public class CategoryList extends ActionBarActivity {
             finish();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
