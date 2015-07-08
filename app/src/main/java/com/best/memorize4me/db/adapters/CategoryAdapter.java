@@ -25,7 +25,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        Category category = FakeDB.getCategories().get(position);
+        Category category = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.category_list_adapter, parent, false);

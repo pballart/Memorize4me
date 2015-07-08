@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.interfaces.AppInterface;
 import com.best.memorize4me.db.model.Category;
@@ -20,11 +22,23 @@ import java.util.Date;
 
 
 public class NewCategory extends ActionBarActivity {
+    private EditText titleTxt;
+    private DatePicker datePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_category);
+        titleTxt = (EditText) findViewById(R.id.editText);
+        datePicker = (DatePicker) findViewById(R.id.datePicker);
+    }
+
+    private Category getCategoryFromFields() {
+        Category category = new Category();
+        category.title = titleTxt.getText().toString();
+        Date date = getDateFromDatePicker(datePicker);
+        category.date = date.getTime();
+        return category;
     }
 
     @Override
@@ -44,20 +58,22 @@ public class NewCategory extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.saveCategory){
             View v = findViewById(R.id.saveCategory);
-            Category newCategory=new Category();
-            DatePicker dp = (DatePicker) findViewById(R.id.datePicker);
-            Calendar c = Calendar.getInstance();
-            c.set (dp.getYear(),dp.getMonth(),dp.getDayOfMonth());
-            long startTime = c.getTimeInMillis();
-            EditText title = (EditText) findViewById(R.id.editText);
-            newCategory.title=title.getText().toString();
-            newCategory.date= startTime;
-
-            //todo save newCategory to database
-            Intent i = new Intent (this, CategoryList.class);
-            startActivity (i);
+            Category category = getCategoryFromFields();
+            StorageFacade.getInstance().createCategory(category);
+            this.finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
+    public static java.util.Date getDateFromDatePicker(DatePicker datePicker){
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year =  datePicker.getYear();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        return calendar.getTime();
+    }
 }
