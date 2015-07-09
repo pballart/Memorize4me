@@ -7,27 +7,15 @@
     tools:context="com.best.memorize4me.NewCategory">
 
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Add/Edit search"
-            android:id="@+id/newCategoryAdd"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Title"
             android:id="@+id/newCategoryTitle"
-            android:layout_below="@+id/newCategoryAdd"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="59dp" />
+            android:layout_marginTop="20dp" />
 
         <EditText
             android:layout_width="187dp"
@@ -35,10 +23,11 @@
             android:id="@+id/editText"
             android:inputType="text"
             android:imeOptions="actionDone"
-            android:layout_alignBottom="@+id/newCategoryTitle"
-            android:layout_toRightOf="@+id/newCategoryDate"
-            android:layout_marginLeft = "20px"
-            android:layout_toEndOf="@+id/newCategoryDate" />
+            android:layout_below="@+id/newCategoryTitle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,11 +44,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/datePicker"
+        android:calendarViewShown="false"
         android:layout_alignParentBottom="true"
+        android:layout_below="@+id/newCategoryDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/newCategoryDate"
-        android:calendarViewShown="false" />
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
