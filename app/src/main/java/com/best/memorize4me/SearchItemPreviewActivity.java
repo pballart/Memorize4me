@@ -54,7 +54,7 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
         TextView rate = (TextView) findViewById(R.id.rateTextView);
         TextView multilineDescription = (TextView) findViewById(R.id.multilineDescriptionTextView);
         TextView contactName = (TextView) findViewById(R.id.contactNameTextView);
-        TextView contactPhoneNumber = (TextView) findViewById(R.id.contactPhoneNumberTextView);
+        final TextView contactPhoneNumber = (TextView) findViewById(R.id.contactPhoneNumberTextView);
         TextView contactEmail = (TextView) findViewById(R.id.contactEmailTextView);
         imageView = (ImageView) findViewById(R.id.imageView);
 
@@ -81,6 +81,16 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
         else {
             imageView.setVisibility(View.GONE);
         }
+
+        ImageView callImageView = (ImageView) findViewById(R.id.callImageView);
+        callImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse(contactPhoneNumber.getText().toString()));
+                startActivity(callIntent);
+            }
+        });
     }
 
 

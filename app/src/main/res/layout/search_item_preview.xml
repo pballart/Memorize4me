@@ -129,7 +129,7 @@
                     <ImageView
                         android:layout_width="18sp"
                         android:layout_height="18sp"
-                        android:id="@+id/imageView1"
+                        android:id="@+id/callImageView"
 
                         android:src = "@drawable/call"
                         android:layout_alignParentTop="true"
