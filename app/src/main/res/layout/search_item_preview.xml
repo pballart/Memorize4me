@@ -130,14 +130,6 @@
 
             </LinearLayout>
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -151,6 +143,15 @@
                 android:text="Medium Text"
                 android:layout_below="@id/contactLayout"
                 android:id="@+id/multilineDescriptionTextView"/>
+
+            <ImageView
+                android:background="@android:color/darker_gray"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/imageView"
+                android:layout_below="@id/multilineDescriptionTextView"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
     </ScrollView>

@@ -48,7 +48,6 @@ public class CategoryList extends ActionBarActivity {
             Intent myIntent = new Intent(CategoryList.this, NewCategory.class);
             myIntent.putExtra("category", currentCategory);
             startActivity(myIntent);
-            finish();
 
         } else if (item.getItemId()==R.id.remove_category) {
 
@@ -124,7 +123,6 @@ public class CategoryList extends ActionBarActivity {
             Log.d("add category pressed", "hostia");
             Intent myIntent = new Intent(CategoryList.this, NewCategory.class);
             startActivity(myIntent);
-            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

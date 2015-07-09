@@ -40,8 +40,6 @@ public class Create_new_item extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_item);
-
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -83,12 +81,9 @@ public class Create_new_item extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.saveCategory) {
-
-
-            if (title.getText().toString().length() == 0 || description.getText().toString().length() == 0 || contact.getText().toString().length() == 0 || tel.getText().toString().length() == 0 || mail.getText().toString().length() == 0  || price.getText().toString().length() == 0  ) {
+            if (title.getText().toString().length() == 0 || description.getText().toString().length() == 0 || contact.getText().toString().length() == 0 || tel.getText().toString().length() == 0 || mail.getText().toString().length() == 0 || price.getText().toString().length() == 0) {
                 this.showToastWithText("Error: one of the text fields is empty");
-            }
-            else {
+            } else {
                 SearchItem searchItem = new SearchItem();
                 Contact newContact = new Contact();
                 newContact.email = mail.getText().toString();
@@ -115,16 +110,15 @@ public class Create_new_item extends ActionBarActivity {
                 i.putExtra("category", currentCategory);
                 startActivity(i);
                 finish();
+                return true;
             }
-        }
-        if (id==android.R.id.home){
-
-            Intent myIntent = new Intent(Create_new_item.this, ItemList.class);
-            myIntent.putExtra("category",currentCategory);
-            startActivity(myIntent);
+        } else if (id == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     public void showToastWithText(String text) {
         Context context = getApplicationContext();
         CharSequence textToast = text;

@@ -230,15 +230,33 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
-                <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/ratingBar"
-                    android:numStars="5"
-                    />
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:gravity="left"
+                        android:id = "@+id/imageTitle"
+                        android:text = "Image:"/>
+                    <ImageButton
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:id="@+id/imageView2"
+                        android:layout_below="@+id/imageTitle"
+                        android:layout_gravity="right"
+                        android:background="@drawable/add_category_button"/>
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/imageView2"
+                        android:id="@+id/ratingBar"
+                        android:numStars="5"
+                        />
+                    android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+
 
         </LinearLayout>
     </ScrollView>

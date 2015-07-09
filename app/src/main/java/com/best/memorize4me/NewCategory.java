@@ -71,7 +71,7 @@ public class NewCategory extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.saveCategory){
+        if (id == R.id.saveCategory) {
             if (titleTxt.getText().toString().length() == 0) {
                 this.showToastWithText("Error: one of the text fields is empty");
             } else {
@@ -80,27 +80,13 @@ public class NewCategory extends ActionBarActivity {
                 if (currentCategory != null) {
                     category.id = currentCategory.id;
                     StorageFacade.getInstance().updateCategory(category);
-                }
-                else {
+                } else {
                     StorageFacade.getInstance().createCategory(category);
                 }
                 Intent intent = new Intent(this, CategoryList.class);
                 startActivity(intent);
-                finish();
-                return true;
             }
         }
-        else {
-            if (id ==android.R.id.home){
-
-                Intent intent = new Intent(this, CategoryList.class);
-                startActivity(intent);
-
-                this.finish();
-                return true;
-            }
-        }
-
         return super.onOptionsItemSelected(item);
     }
 

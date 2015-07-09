@@ -3,7 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="add_category">Add Category</string>
-    <string name="title_activity_new_category">NewCategory</string>
+    <string name="title_activity_new_category">Create new category</string>
     <string name="title_activity_create_new_item">Create new item</string>
     <string name="title_activity_item_list">Item List</string>
     <string name="title_search_item_preview_activity">Item List</string>
