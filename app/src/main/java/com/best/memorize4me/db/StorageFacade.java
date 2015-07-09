@@ -50,7 +50,7 @@ public class StorageFacade implements AppInterface{
                 null,
                 null,
                 null,
-                null
+                Category.CategoryEntry.COLUMN_ID + " DESC"
         );
         if (cursor.moveToFirst()) {
             do {
@@ -89,7 +89,7 @@ public class StorageFacade implements AppInterface{
                 new String[] { String.valueOf(categoryId) },
                 null,
                 null,
-                null
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_ID + " DESC"
         );
         if (cursor.moveToFirst()) {
             do {
