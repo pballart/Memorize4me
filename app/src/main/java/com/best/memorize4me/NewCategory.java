@@ -40,7 +40,7 @@ public class NewCategory extends ActionBarActivity {
         currentCategory = (Category) getIntent().getSerializableExtra("category");
         titleTxt = (EditText) findViewById(R.id.editText);
         datePicker = (DatePicker) findViewById(R.id.datePicker);
-        if (currentCategory != null && savedInstanceState == null) {
+        if (currentCategory != null) {
             titleTxt.setText(currentCategory.title);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(currentCategory.getDate());

@@ -56,11 +56,11 @@ public class Create_new_item extends ActionBarActivity {
         mail = (EditText) findViewById(R.id.editMail);
         price = (EditText) findViewById(R.id.editPrice);
         mBar = (RatingBar) findViewById(R.id.ratingBar);
-        if (currentCategory != null && savedInstanceState == null) {
+        if (currentCategory != null) {
             categoryTitle.setText(currentCategory.title);
             categoryDate.setText(DateUtils.dateToString(currentCategory.date));
         }
-        if (currentSearchItem != null && savedInstanceState == null) {
+        if (currentSearchItem != null) {
             title.setText(currentSearchItem.title);
             description.setText(currentSearchItem.description);
             contact.setText(currentSearchItem.contact.name);
