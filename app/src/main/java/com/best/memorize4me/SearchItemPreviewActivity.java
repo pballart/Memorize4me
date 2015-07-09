@@ -56,13 +56,15 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
         TextView contactEmail = (TextView) findViewById(R.id.contactEmailTextView);
         imageView = (ImageView) findViewById(R.id.imageView);
 
-        title.setText(searchItem.title);
-        date.setText(String.valueOf(searchItem.date));
-        price.setText(String.valueOf(searchItem.price));
-        rate.setText("Rate: " + String.valueOf(searchItem.rate));
-        contactName.setText("Contact: " + searchItem.contact.name);
-        contactPhoneNumber.setText("Tel: " + searchItem.contact.phoneNumber);
-        contactEmail.setText(searchItem.contact.email);
+        if (searchItem != null && savedInstanceState == null) {
+            title.setText(searchItem.title);
+            date.setText(String.valueOf(searchItem.date));
+            price.setText(String.valueOf(searchItem.price));
+            rate.setText("Rate: " + String.valueOf(searchItem.rate));
+            contactName.setText("Contact: " + searchItem.contact.name);
+            contactPhoneNumber.setText("Tel: " + searchItem.contact.phoneNumber);
+            contactEmail.setText(searchItem.contact.email);
+        }
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +81,7 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
 
         if(requestCode == GET_IMAGE_REQUEST_CODE)
         {
-            if(data != null)
+            if(data.getAction() != null)
             {
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
                 photo = Bitmap.createScaledBitmap(photo, 80, 80, false);
