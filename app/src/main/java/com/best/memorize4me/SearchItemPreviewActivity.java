@@ -66,6 +66,21 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
         contactName.setText("Full Name: " + searchItem.contact.name);
         contactPhoneNumber.setText("Tel: " + searchItem.contact.phoneNumber);
         contactEmail.setText(searchItem.contact.email);
+        if (searchItem.imageUrl != null) {
+            setImage(searchItem.imageUrl);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setAction(android.content.Intent.ACTION_VIEW);
+                    intent.setDataAndType(Uri.fromFile(new File(searchItem.imageUrl)), "image/png");
+                    startActivity(intent);
+                }
+            });
+        }
+        else {
+            imageView.setVisibility(View.GONE);
+        }
     }
 
 
@@ -76,5 +91,22 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void setImage(String path) {
+        Bitmap bm;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, options);
+        final int REQUIRED_SIZE = 100;
+        int scale = 1;
+        while (options.outWidth / scale / 2 >= REQUIRED_SIZE
+                && options.outHeight / scale / 2 >= REQUIRED_SIZE)
+            scale *= 2;
+        options.inSampleSize = scale;
+        options.inJustDecodeBounds = false;
+        bm = BitmapFactory.decodeFile(path, options);
+        imageView.setImageBitmap(bm);
     }
 }

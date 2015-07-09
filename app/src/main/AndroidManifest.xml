@@ -19,7 +19,6 @@
         </activity>
         <activity
             android:name=".NewCategory"
-            android:noHistory="true"
             android:label="@string/title_activity_new_category"
             android:windowSoftInputMode="stateHidden" >
             <meta-data
@@ -37,7 +36,6 @@
         </activity>
         <activity
             android:name=".SearchItemPreviewActivity"
-            android:noHistory="true"
             android:label="@string/title_search_item_preview_activity"
             android:windowSoftInputMode="stateHidden">
             <meta-data

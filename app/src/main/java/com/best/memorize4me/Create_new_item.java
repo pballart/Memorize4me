@@ -42,6 +42,7 @@ public class Create_new_item extends ActionBarActivity {
     private EditText price;
     private RatingBar mBar;
     private ImageButton imageButton;
+    private String currentImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,7 @@ public class Create_new_item extends ActionBarActivity {
                 mail.setText(currentSearchItem.contact.email);
                 price.setText(String.valueOf(currentSearchItem.price));
                 mBar.setRating(currentSearchItem.rate);
+                setImage(currentSearchItem.imageUrl);
             }
         }
     }
@@ -118,6 +120,7 @@ public class Create_new_item extends ActionBarActivity {
                 searchItem.contact = newContact;
                 searchItem.date = System.currentTimeMillis();
                 searchItem.rate = mBar.getRating();
+                searchItem.imageUrl = currentImage;
                 if (price.getText().toString().matches("")) {
                     searchItem.price = 0;
                 } else {
@@ -160,20 +163,26 @@ public class Create_new_item extends ActionBarActivity {
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
             cursor.moveToFirst();
             String selectedImagePath = cursor.getString(column_index);
-            Bitmap bm;
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeFile(selectedImagePath, options);
-            final int REQUIRED_SIZE = 100;
-            int scale = 1;
-            while (options.outWidth / scale / 2 >= REQUIRED_SIZE
-                    && options.outHeight / scale / 2 >= REQUIRED_SIZE)
-                scale *= 2;
-            options.inSampleSize = scale;
-            options.inJustDecodeBounds = false;
-            bm = BitmapFactory.decodeFile(selectedImagePath, options);
-            imageButton.setImageBitmap(bm);
+            cursor.close();
+            setImage(selectedImagePath);
         }
+    }
+
+    private void setImage(String path) {
+        Bitmap bm;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, options);
+        final int REQUIRED_SIZE = 100;
+        int scale = 1;
+        while (options.outWidth / scale / 2 >= REQUIRED_SIZE
+                && options.outHeight / scale / 2 >= REQUIRED_SIZE)
+            scale *= 2;
+        options.inSampleSize = scale;
+        options.inJustDecodeBounds = false;
+        bm = BitmapFactory.decodeFile(path, options);
+        currentImage = path;
+        imageButton.setImageBitmap(bm);
     }
 
 }
