@@ -3,6 +3,11 @@ package com.best.memorize4me;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +41,7 @@ public class Create_new_item extends ActionBarActivity {
     private EditText mail;
     private EditText price;
     private RatingBar mBar;
+    private ImageButton imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +65,20 @@ public class Create_new_item extends ActionBarActivity {
         mail = (EditText) findViewById(R.id.editMail);
         price = (EditText) findViewById(R.id.editPrice);
         mBar = (RatingBar) findViewById(R.id.ratingBar);
+        imageButton = (ImageButton) findViewById(R.id.imageView2);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType("image/*");
+                startActivityForResult(
+                        Intent.createChooser(intent, "Select File"), 0);
+            }
+        });
+
         if (currentCategory != null && savedInstanceState == null) {
             categoryTitle.setText(currentCategory.title);
             categoryDate.setText(DateUtils.dateToString(currentCategory.date));
@@ -131,6 +152,34 @@ public class Create_new_item extends ActionBarActivity {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, textToast, duration);
         toast.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            Uri selectedImageUri = data.getData();
+            String[] projection = { MediaStore.MediaColumns.DATA };
+            Cursor cursor = managedQuery(selectedImageUri, projection, null, null,
+                    null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+            cursor.moveToFirst();
+            String selectedImagePath = cursor.getString(column_index);
+            Bitmap bm;
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(selectedImagePath, options);
+            final int REQUIRED_SIZE = 100;
+            int scale = 1;
+            while (options.outWidth / scale / 2 >= REQUIRED_SIZE
+                    && options.outHeight / scale / 2 >= REQUIRED_SIZE)
+                scale *= 2;
+            options.inSampleSize = scale;
+            options.inJustDecodeBounds = false;
+            bm = BitmapFactory.decodeFile(selectedImagePath, options);
+            imageButton.setImageBitmap(bm);
+        }
+
     }
 
 }
