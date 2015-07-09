@@ -192,9 +192,9 @@ public class StorageFacade implements AppInterface{
         values.put(SearchItemEntry.COLUMN_RATE, searchItem.rate);
         values.put(SearchItemEntry.COLUMN_TITLE, searchItem.title);
         getDatabase().update(
-                Category.CategoryEntry.TABLE_NAME,
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.TABLE_NAME,
                 values,
-                Category.CategoryEntry.COLUMN_ID + " = ?",
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(searchItem.id) }
         );
     }
