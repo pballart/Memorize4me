@@ -20,7 +20,6 @@ import android.widget.TextView;
 
 import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.adapters.CategoryAdapter;
-import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
 
 import java.util.ArrayList;
@@ -48,7 +47,6 @@ public class CategoryList extends ActionBarActivity {
             Intent myIntent = new Intent(CategoryList.this, NewCategory.class);
             myIntent.putExtra("category", currentCategory);
             startActivity(myIntent);
-            finish();
 
         } else if (item.getItemId()==R.id.remove_category) {
 
@@ -98,7 +96,6 @@ public class CategoryList extends ActionBarActivity {
                 Intent myIntent = new Intent(CategoryList.this, ItemList.class);
                 myIntent.putExtra("category", cat);
                 CategoryList.this.startActivity(myIntent);
-                Log.d("caca", String.valueOf(cat.id));
             }
         });
 
@@ -121,10 +118,8 @@ public class CategoryList extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add_category) {
-            Log.d("add category pressed", "hostia");
             Intent myIntent = new Intent(CategoryList.this, NewCategory.class);
             startActivity(myIntent);
-            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

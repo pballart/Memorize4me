@@ -15,7 +15,7 @@ import static com.best.memorize4me.db.table.SearchItemPhoto.*;
 
 public class DbHelper extends SQLiteOpenHelper{
 
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String INTEGER_TYPE = " INTEGER";
@@ -23,7 +23,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     private static final String SQL_CREATE_CATEGORIES =
             "CREATE TABLE " + CategoryEntry.TABLE_NAME + " (" +
-                    CategoryEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
+                    CategoryEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     CategoryEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
                     CategoryEntry.COLUMN_DATE + INTEGER_TYPE +
                     " )"
@@ -31,7 +31,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     private static final  String SQL_CREATE_SEARCH_ITEMS =
             "CREATE TABLE " + SearchItemEntry.TABLE_NAME + " (" +
-                    SearchItemEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
+                    SearchItemEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     SearchItemEntry.COLUMN_CATEGORY_ID + INTEGER_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
                     SearchItemEntry.COLUMN_DATE + DATE_TYPE + COMMA_SEP +
@@ -47,7 +47,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
     private static final String SQL_CREATE_SEARCH_ITEM_PHOTOS =
             "CREATE TABLE " + SearchItemPhotoEntry.TABLE_NAME + " (" +
-                    SearchItemPhotoEntry.COLUMN_ID + " INTEGER PRIMARY KEY," +
+                    SearchItemPhotoEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     SearchItemPhotoEntry.COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
                     SearchItemPhotoEntry.COLUMN_URL + TEXT_TYPE + COMMA_SEP +
                     SearchItemPhotoEntry.COLUMN_SEARCH_ITEM_ID + INTEGER_TYPE +

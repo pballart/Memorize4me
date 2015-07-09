@@ -13,11 +13,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.best.memorize4me.db.model.SearchItem;
+import com.best.memorize4me.util.DateUtils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -50,20 +52,51 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
         TextView date = (TextView) findViewById(R.id.dateTextView);
         TextView price = (TextView) findViewById(R.id.priceTextView);
         TextView rate = (TextView) findViewById(R.id.rateTextView);
-        //TextView multilineDescription = (TextView) findViewById(R.id.multilineDescriptionTextView);
+        TextView multilineDescription = (TextView) findViewById(R.id.multilineDescriptionTextView);
         TextView contactName = (TextView) findViewById(R.id.contactNameTextView);
         TextView contactPhoneNumber = (TextView) findViewById(R.id.contactPhoneNumberTextView);
         TextView contactEmail = (TextView) findViewById(R.id.contactEmailTextView);
         imageView = (ImageView) findViewById(R.id.imageView);
 
-        if (searchItem != null && savedInstanceState == null) {
-            title.setText(searchItem.title);
-            date.setText(String.valueOf(searchItem.date));
-            price.setText(String.valueOf(searchItem.price));
-            rate.setText("Rate: " + String.valueOf(searchItem.rate));
-            contactName.setText("Contact: " + searchItem.contact.name);
-            contactPhoneNumber.setText("Tel: " + searchItem.contact.phoneNumber);
-            contactEmail.setText(searchItem.contact.email);
+        title.setText(searchItem.title);
+        date.setText(DateUtils.dateToString(searchItem.date));
+        multilineDescription.setText (searchItem.description);
+        price.setText(String.valueOf(searchItem.price)+ " €");
+        rate.setText("Rate: " + String.valueOf(searchItem.rate));
+        contactName.setText("Full Name: " + searchItem.contact.name);
+        contactPhoneNumber.setText("Tel: " + searchItem.contact.phoneNumber);
+        contactEmail.setText(searchItem.contact.email);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivityForResult(intent, GET_IMAGE_REQUEST_CODE);
+            }
+        });
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == GET_IMAGE_REQUEST_CODE)
+        {
+            if(data != null)
+            {
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                photo = Bitmap.createScaledBitmap(photo, 80, 80, false);
+                imageView.setImageBitmap(photo);
+            }
         }
     }
 }
