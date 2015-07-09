@@ -163,7 +163,6 @@ public class Create_new_item extends ActionBarActivity {
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
             cursor.moveToFirst();
             String selectedImagePath = cursor.getString(column_index);
-            cursor.close();
             setImage(selectedImagePath);
         }
     }
@@ -184,5 +183,4 @@ public class Create_new_item extends ActionBarActivity {
         currentImage = path;
         imageButton.setImageBitmap(bm);
     }
-
 }
