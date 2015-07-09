@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:textSize="20sp"
+            android:layout_marginLeft="8dp"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:id="@+id/itemPriceTextView" />
@@ -61,19 +62,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:textColor="@color/white"
             android:text="New Text"
             android:id="@+id/itemRateTextView" />
 
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="0.1"
+        android:layout_height="fill_parent">
 
-    <ImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:ali
-        android:id="@+id/imageView"
-        android:background="@drawable/right_arrow_icon"
-        android:layout_gravity="center_horizontal" />
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/imageView"
+            android:background="@drawable/right_arrow_icon"
+            android:layout_gravity="center_horizontal" />
+
+    </RelativeLayout>
+
 
 
 </LinearLayout>
