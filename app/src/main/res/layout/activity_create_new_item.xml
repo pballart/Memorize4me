@@ -144,7 +144,7 @@
                         android:layout_weight="1"
                         android:layout_marginTop="4dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Contact:"
+                        android:text="Full Name:"
                         android:id="@+id/itemContact" />
 
                 </TableRow>

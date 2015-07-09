@@ -63,7 +63,7 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
         multilineDescription.setText (searchItem.description);
         price.setText(String.valueOf(searchItem.price)+ " €");
         rate.setText("Rate: " + String.valueOf(searchItem.rate));
-        contactName.setText("Contact: " + searchItem.contact.name);
+        contactName.setText("Full Name: " + searchItem.contact.name);
         contactPhoneNumber.setText("Tel: " + searchItem.contact.phoneNumber);
         contactEmail.setText(searchItem.contact.email);
         imageView.setOnClickListener(new View.OnClickListener() {

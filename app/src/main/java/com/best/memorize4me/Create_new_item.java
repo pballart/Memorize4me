@@ -81,8 +81,8 @@ public class Create_new_item extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.saveCategory) {
-            if (title.getText().toString().length() == 0 || description.getText().toString().length() == 0 || contact.getText().toString().length() == 0 || tel.getText().toString().length() == 0 || mail.getText().toString().length() == 0 || price.getText().toString().length() == 0) {
-                this.showToastWithText("Error: one of the text fields is empty");
+            if (title.getText().toString().length() == 0 ) {
+                this.showToastWithText("Error: the title text fields is empty");
             } else {
                 SearchItem searchItem = new SearchItem();
                 Contact newContact = new Contact();
