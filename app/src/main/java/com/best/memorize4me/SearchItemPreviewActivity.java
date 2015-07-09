@@ -66,13 +66,6 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
         contactName.setText("Full Name: " + searchItem.contact.name);
         contactPhoneNumber.setText("Tel: " + searchItem.contact.phoneNumber);
         contactEmail.setText(searchItem.contact.email);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                startActivityForResult(intent, GET_IMAGE_REQUEST_CODE);
-            }
-        });
     }
 
 
@@ -83,20 +76,5 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == GET_IMAGE_REQUEST_CODE)
-        {
-            if(data != null)
-            {
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
-                photo = Bitmap.createScaledBitmap(photo, 80, 80, false);
-                imageView.setImageBitmap(photo);
-            }
-        }
     }
 }

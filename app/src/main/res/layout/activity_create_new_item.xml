@@ -233,15 +233,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:gravity="left"
                         android:id = "@+id/imageTitle"
                         android:text = "Image:"/>
                     <ImageButton
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:visibility="gone"
+                        android:layout_width="@dimen/image_size"
+                        android:layout_height="@dimen/image_size"
                         android:id="@+id/imageView2"
                         android:layout_below="@+id/imageTitle"
                         android:layout_gravity="right"

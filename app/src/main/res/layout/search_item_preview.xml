@@ -157,8 +157,8 @@
 
             <ImageView
                 android:background="@android:color/darker_gray"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
                 android:visibility="gone"
                 android:id="@+id/imageView"
                 android:layout_below="@id/multilineDescriptionTextView"

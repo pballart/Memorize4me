@@ -50,7 +50,7 @@ public class Create_new_item extends ActionBarActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setDisplayHomeAsUpEnabled(true);
-       // actionBar.setIcon(R.mipmap.ic_launcher);
+        // actionBar.setIcon(R.mipmap.ic_launcher);
 
         TextView categoryTitle = (TextView) findViewById(R.id.categoryTitle);
         TextView categoryDate = (TextView) findViewById(R.id.categoryDate);
@@ -64,32 +64,33 @@ public class Create_new_item extends ActionBarActivity {
         price = (EditText) findViewById(R.id.editPrice);
         mBar = (RatingBar) findViewById(R.id.ratingBar);
         if (currentCategory != null) {
-        imageButton = (ImageButton) findViewById(R.id.imageView2);
+            imageButton = (ImageButton) findViewById(R.id.imageView2);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(
-                        Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                startActivityForResult(
-                        Intent.createChooser(intent, "Select File"), 0);
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(
+                            Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(
+                            Intent.createChooser(intent, "Select File"), 0);
+                }
+            });
+
+            if (currentCategory != null && savedInstanceState == null) {
+                categoryTitle.setText(currentCategory.title);
+                categoryDate.setText(DateUtils.dateToString(currentCategory.date));
             }
-        });
-
-        if (currentCategory != null && savedInstanceState == null) {
-            categoryTitle.setText(currentCategory.title);
-            categoryDate.setText(DateUtils.dateToString(currentCategory.date));
-        }
-        if (currentSearchItem != null) {
-            title.setText(currentSearchItem.title);
-            description.setText(currentSearchItem.description);
-            contact.setText(currentSearchItem.contact.name);
-            tel.setText(currentSearchItem.contact.email);
-            mail.setText(currentSearchItem.contact.email);
-            price.setText(String.valueOf(currentSearchItem.price));
-            mBar.setRating(currentSearchItem.rate);
+            if (currentSearchItem != null) {
+                title.setText(currentSearchItem.title);
+                description.setText(currentSearchItem.description);
+                contact.setText(currentSearchItem.contact.name);
+                tel.setText(currentSearchItem.contact.email);
+                mail.setText(currentSearchItem.contact.email);
+                price.setText(String.valueOf(currentSearchItem.price));
+                mBar.setRating(currentSearchItem.rate);
+            }
         }
     }
 
@@ -151,7 +152,6 @@ public class Create_new_item extends ActionBarActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0 && resultCode == RESULT_OK) {
             Uri selectedImageUri = data.getData();
             String[] projection = { MediaStore.MediaColumns.DATA };
@@ -174,7 +174,6 @@ public class Create_new_item extends ActionBarActivity {
             bm = BitmapFactory.decodeFile(selectedImagePath, options);
             imageButton.setImageBitmap(bm);
         }
-
     }
 
 }
