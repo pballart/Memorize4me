@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.6"
+        android:layout_weight="0.5"
         android:id="@+id/itemLeftLayout">
 
         <TextView
@@ -46,7 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:layout_weight="0.3"
+        android:layout_weight="0.4"
         android:layout_gravity="right">
 
         <TextView
