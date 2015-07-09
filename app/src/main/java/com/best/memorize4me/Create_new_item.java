@@ -87,7 +87,7 @@ public class Create_new_item extends ActionBarActivity {
                 title.setText(currentSearchItem.title);
                 description.setText(currentSearchItem.description);
                 contact.setText(currentSearchItem.contact.name);
-                tel.setText(currentSearchItem.contact.email);
+                tel.setText(currentSearchItem.contact.phoneNumber);
                 mail.setText(currentSearchItem.contact.email);
                 price.setText(String.valueOf(currentSearchItem.price));
                 mBar.setRating(currentSearchItem.rate);
