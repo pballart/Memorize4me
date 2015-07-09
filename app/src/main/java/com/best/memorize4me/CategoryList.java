@@ -95,30 +95,6 @@ public class CategoryList extends ActionBarActivity {
         });
 
 
-
-
-/*        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                *//*AlertDialog.Builder adb = new AlertDialog.Builder(CategoryList.this);
-                final Category currentCategory = arrayOfCategories.get(position);
-                adb.setTitle("Delete?");
-                adb.setMessage("Are you sure you want to delete " + currentCategory.title);
-                adb.setNegativeButton("Cancel", null);
-                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        StorageFacade.getInstance().removeCategory(currentCategory.id);
-                        adapter.remove(currentCategory);
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-                adb.show();*//*
-                return true;
-            }
-        });
-        });*/
-
-
     }
 
     @Override

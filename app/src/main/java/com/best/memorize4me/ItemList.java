@@ -46,7 +46,7 @@ public class ItemList extends ActionBarActivity {
         dateTV.setText(DateUtils.dateToString(currentCategory.date));
 
         final ListView listView = (ListView) findViewById(R.id.itemListView);
-        ArrayList<SearchItem> searchItems = StorageFacade.getInstance().getSearchItemByCategory(currentCategory.id);
+        final ArrayList<SearchItem> searchItems = StorageFacade.getInstance().getSearchItemByCategory(currentCategory.id);
 
         if (searchItems != null) {
             ItemAdapter adapter = new ItemAdapter(this, searchItems);
@@ -56,15 +56,11 @@ public class ItemList extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-                Object o = listView.getItemAtPosition(position);
-               /*
-                Category cat = (Category) o;
-                Intent myIntent = new Intent(CategoryList.this, ItemList.class);
-                myIntent.putExtra("category_id", cat.id);
-                CategoryList.this.startActivity(myIntent);
-                */
-                Log.d("caca", "caca");
+                SearchItem searchItem = (SearchItem) listView.getItemAtPosition(position);
+                Intent myIntent = new Intent(ItemList.this, SearchItemPreviewActivity.class);
+                myIntent.putExtra("search_item", searchItem);
+                startActivity(myIntent);
+                finish();
             }
         });
     }

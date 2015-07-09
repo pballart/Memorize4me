@@ -36,6 +36,14 @@
                 android:value="com.best.memorize4me.ItemList" />
         </activity>
         <activity
+            android:name=".SearchItemPreviewActivity"
+            android:label="@string/title_search_item_preview_activity"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.best.memorize4me.ItemList" />
+        </activity>
+        <activity
             android:name=".ItemList"
             android:label="@string/title_activity_item_list">
             <meta-data
