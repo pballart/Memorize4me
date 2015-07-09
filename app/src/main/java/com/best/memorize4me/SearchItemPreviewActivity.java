@@ -17,7 +17,7 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_item_preview);
-        searchItem = (SearchItem) getIntent().getSerializableExtra("search_item");
+        searchItem = (SearchItem) getIntent().getParcelableExtra("search_item");
 
         TextView title = (TextView) findViewById(R.id.titleTextView);
         TextView date = (TextView) findViewById(R.id.dateTextView);
@@ -32,7 +32,6 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
         date.setText(String.valueOf(searchItem.date));
         price.setText(String.valueOf(searchItem.price));
         rate.setText("Rate: " + String.valueOf(searchItem.rate));
-        //multilineDescription.setText();
         contactName.setText("Contact: " + searchItem.contact.name);
         contactPhoneNumber.setText("Tel: " + searchItem.contact.phoneNumber);
         contactEmail.setText(searchItem.contact.email);
