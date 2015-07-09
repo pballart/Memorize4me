@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.best.memorize4me.db.StorageFacade;
-import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
 
 import java.util.Calendar;

@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.adapters.ItemAdapter;
-import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
 import com.best.memorize4me.db.model.SearchItem;
 import com.best.memorize4me.util.DateUtils;
