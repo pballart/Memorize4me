@@ -133,6 +133,11 @@ public class StorageFacade implements AppInterface{
                 Category.CategoryEntry.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(categoryId) }
         );
+        getDatabase().delete(
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.TABLE_NAME,
+                SearchItemEntry.COLUMN_CATEGORY_ID + " = ?",
+                new String[] { String.valueOf(categoryId) }
+        );
     }
 
     @Override
