@@ -40,8 +40,8 @@ public class ItemAdapter extends ArrayAdapter<SearchItem> {
         title.setText(searchItem.title);
         date.setText(DateUtils.dateToString(searchItem.date));
         description.setText(searchItem.description);
-        price.setText(String.valueOf(searchItem.price));
-        rate.setText(String.valueOf(searchItem.rate));
+        price.setText(String.valueOf(searchItem.price)+" €");
+        rate.setText("Rate: "+String.valueOf(searchItem.rate));
         // Return the completed view to render on screen
         return convertView;
     }
