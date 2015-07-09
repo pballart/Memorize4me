@@ -156,7 +156,6 @@
                 android:id="@+id/multilineDescriptionTextView"/>
 
             <ImageView
-                android:background="@android:color/darker_gray"
                 android:layout_width="@dimen/image_size"
                 android:layout_height="@dimen/image_size"
                 android:id="@+id/imageView"
