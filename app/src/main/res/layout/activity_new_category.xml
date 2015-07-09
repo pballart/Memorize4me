@@ -21,7 +21,7 @@
             android:layout_width="187dp"
             android:layout_height="wrap_content"
             android:id="@+id/editText"
-            android:inputType="text"
+            android:singleLine="false"
             android:imeOptions="actionDone"
             android:layout_below="@+id/newCategoryTitle"
             android:layout_alignParentLeft="true"
