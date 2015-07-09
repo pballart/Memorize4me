@@ -34,6 +34,7 @@ public class Create_new_item extends ActionBarActivity {
     private EditText tel;
     private EditText mail;
     private EditText price;
+    private RatingBar mBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class Create_new_item extends ActionBarActivity {
         TextView categoryTitle = (TextView) findViewById(R.id.categoryTitle);
         TextView categoryDate = (TextView) findViewById(R.id.categoryDate);
         currentCategory = (Category) getIntent().getSerializableExtra("category");
-        currentSearchItem = (SearchItem) getIntent().getSerializableExtra("search_item");
+        currentSearchItem = getIntent().getParcelableExtra("search_item");
         title = (EditText) findViewById(R.id.editTitle);
         description = (EditText) findViewById(R.id.editDescription);
         contact = (EditText) findViewById(R.id.editContact);
@@ -59,12 +60,14 @@ public class Create_new_item extends ActionBarActivity {
         categoryTitle.setText(currentCategory.title);
         categoryDate.setText(DateUtils.dateToString(currentCategory.date));
         if (currentSearchItem != null && savedInstanceState == null) {
+            mBar = (RatingBar) findViewById(R.id.ratingBar);
             title.setText(currentSearchItem.title);
             description.setText(currentSearchItem.description);
             contact.setText(currentSearchItem.contact.name);
             tel.setText(currentSearchItem.contact.email);
             mail.setText(currentSearchItem.contact.email);
             price.setText(String.valueOf(currentSearchItem.price));
+            mBar.setRating(currentSearchItem.rate);
         }
     }
 
@@ -94,7 +97,6 @@ public class Create_new_item extends ActionBarActivity {
                 searchItem.description = description.getText().toString();
                 searchItem.contact = newContact;
                 searchItem.date = System.currentTimeMillis();
-                RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
                 searchItem.rate = mBar.getRating();
                 if (price.getText().toString().matches("")) {
                     searchItem.price = 0;

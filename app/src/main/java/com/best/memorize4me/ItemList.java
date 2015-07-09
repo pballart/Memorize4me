@@ -1,10 +1,13 @@
 package com.best.memorize4me;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +28,57 @@ import java.util.ArrayList;
 
 public class ItemList extends ActionBarActivity {
     private Category currentCategory;
+    private ItemAdapter adapter;
+    ListView listView;
+    
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        final SearchItem currentSearchItem = adapter.getItem(info.position);
+        if (item.getItemId() == R.id.edit_category) {
+            Intent myIntent = new Intent(ItemList.this, Create_new_item.class);
+            myIntent.putExtra("category", currentCategory);
+            myIntent.putExtra("search_item", currentSearchItem);
+            startActivity(myIntent);
+            finish();
+
+        } else if (item.getItemId() == R.id.remove_category) {
+
+            AlertDialog.Builder adb = new AlertDialog.Builder(ItemList.this);
+            adb.setTitle("Delete");
+            adb.setMessage("Are you sure you want to delete " + currentSearchItem.title + "?");
+            adb.setNegativeButton("Cancel", null);
+            adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    adapter.remove(currentSearchItem);
+                    adapter.notifyDataSetChanged();
+                    StorageFacade.getInstance().removeSearchItem(currentSearchItem.id);
+                }
+            });
+            adb.show();
+        }
+        return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerForContextMenu(listView);
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterForContextMenu(listView);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +99,11 @@ public class ItemList extends ActionBarActivity {
         TextView dateTV = (TextView)findViewById(R.id.textViewDate);
         dateTV.setText(DateUtils.dateToString(currentCategory.date));
 
-        final ListView listView = (ListView) findViewById(R.id.itemListView);
-        final ArrayList<SearchItem> searchItems = StorageFacade.getInstance().getSearchItemByCategory(currentCategory.id);
+        listView = (ListView) findViewById(R.id.itemListView);
+        ArrayList<SearchItem> searchItems = StorageFacade.getInstance().getSearchItemByCategory(currentCategory.id);
 
         if (searchItems != null) {
-            ItemAdapter adapter = new ItemAdapter(this, searchItems);
+            adapter = new ItemAdapter(this, searchItems);
             listView.setAdapter(adapter);
         }
 
