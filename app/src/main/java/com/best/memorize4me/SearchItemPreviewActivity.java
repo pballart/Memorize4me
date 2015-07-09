@@ -38,7 +38,7 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
         TextView date = (TextView) findViewById(R.id.dateTextView);
         TextView price = (TextView) findViewById(R.id.priceTextView);
         TextView rate = (TextView) findViewById(R.id.rateTextView);
-        //TextView multilineDescription = (TextView) findViewById(R.id.multilineDescriptionTextView);
+        TextView multilineDescription = (TextView) findViewById(R.id.multilineDescriptionTextView);
         TextView contactName = (TextView) findViewById(R.id.contactNameTextView);
         TextView contactPhoneNumber = (TextView) findViewById(R.id.contactPhoneNumberTextView);
         TextView contactEmail = (TextView) findViewById(R.id.contactEmailTextView);
@@ -46,10 +46,11 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
 
         title.setText(searchItem.title);
         date.setText(String.valueOf(searchItem.date));
-        price.setText(String.valueOf(searchItem.price));
+        price.setText(String.valueOf(searchItem.price) + " €");
         rate.setText("Rate: " + String.valueOf(searchItem.rate));
         contactName.setText("Contact: " + searchItem.contact.name);
         contactPhoneNumber.setText("Tel: " + searchItem.contact.phoneNumber);
+        multilineDescription.setText(searchItem.description);
         contactEmail.setText(searchItem.contact.email);
 
         try {
