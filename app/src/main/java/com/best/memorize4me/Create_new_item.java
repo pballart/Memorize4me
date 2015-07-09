@@ -1,6 +1,7 @@
 package com.best.memorize4me;
 
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -13,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.model.Category;
@@ -76,35 +78,40 @@ public class Create_new_item extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.saveCategory) {
-            SearchItem searchItem = new SearchItem();
-            Contact newContact = new Contact();
-            newContact.email=mail.getText().toString();
-            newContact.phoneNumber = tel.getText().toString();
-            newContact.name=contact.getText().toString();
-            searchItem.categoryId = currentCategory.id;
-            searchItem.title=title.getText().toString();
-            searchItem.description=description.getText().toString();
-            searchItem.contact=newContact;
-            searchItem.date = System.currentTimeMillis();
-            RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
-            searchItem.rate = mBar.getRating();
-            if (price.getText().toString().matches("")){
-                searchItem.price=0;
+
+
+            if (title.getText().toString().length() == 0 || description.getText().toString().length() == 0 || contact.getText().toString().length() == 0 || tel.getText().toString().length() == 0 || mail.getText().toString().length() == 0  || price.getText().toString().length() == 0  ) {
+                this.showToastWithText("Error: one of the text fields is empty");
             }
             else {
-                searchItem.price= Float.parseFloat(price.getText().toString());
+                SearchItem searchItem = new SearchItem();
+                Contact newContact = new Contact();
+                newContact.email = mail.getText().toString();
+                newContact.phoneNumber = tel.getText().toString();
+                newContact.name = contact.getText().toString();
+                searchItem.categoryId = currentCategory.id;
+                searchItem.title = title.getText().toString();
+                searchItem.description = description.getText().toString();
+                searchItem.contact = newContact;
+                searchItem.date = System.currentTimeMillis();
+                RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
+                searchItem.rate = mBar.getRating();
+                if (price.getText().toString().matches("")) {
+                    searchItem.price = 0;
+                } else {
+                    searchItem.price = Float.parseFloat(price.getText().toString());
+                }
+                if (currentSearchItem != null) {
+                    searchItem.id = currentSearchItem.id;
+                    StorageFacade.getInstance().updateSearchItem(searchItem);
+                } else {
+                    StorageFacade.getInstance().createSearchItem(searchItem, currentCategory);
+                }
+                Intent i = new Intent(this, ItemList.class);
+                i.putExtra("category", currentCategory);
+                startActivity(i);
+                finish();
             }
-            if (currentSearchItem != null) {
-                searchItem.id = currentSearchItem.id;
-                StorageFacade.getInstance().updateSearchItem(searchItem);
-            }
-            else {
-                StorageFacade.getInstance().createSearchItem(searchItem, currentCategory);
-            }
-            Intent i = new Intent (this, ItemList.class);
-            i.putExtra("category", currentCategory);
-            startActivity(i);
-            finish();
         }
         if (id==android.R.id.home){
 
@@ -113,6 +120,13 @@ public class Create_new_item extends ActionBarActivity {
             startActivity(myIntent);
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void showToastWithText(String text) {
+        Context context = getApplicationContext();
+        CharSequence textToast = text;
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, textToast, duration);
+        toast.show();
     }
 
 }

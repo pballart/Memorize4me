@@ -37,6 +37,7 @@
             android:imeOptions="actionDone"
             android:layout_alignBottom="@+id/newCategoryTitle"
             android:layout_toRightOf="@+id/newCategoryDate"
+            android:layout_marginLeft = "20px"
             android:layout_toEndOf="@+id/newCategoryDate" />
 
         <TextView
