@@ -15,7 +15,7 @@ import static com.best.memorize4me.db.table.SearchItemPhoto.*;
 
 public class DbHelper extends SQLiteOpenHelper{
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String INTEGER_TYPE = " INTEGER";

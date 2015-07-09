@@ -45,7 +45,7 @@ public class Create_new_item extends ActionBarActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(R.mipmap.ic_launcher);
+       // actionBar.setIcon(R.mipmap.ic_launcher);
 
         TextView categoryTitle = (TextView) findViewById(R.id.categoryTitle);
         TextView categoryDate = (TextView) findViewById(R.id.categoryDate);
@@ -57,10 +57,12 @@ public class Create_new_item extends ActionBarActivity {
         tel = (EditText) findViewById(R.id.editTel);
         mail = (EditText) findViewById(R.id.editMail);
         price = (EditText) findViewById(R.id.editPrice);
-        categoryTitle.setText(currentCategory.title);
-        categoryDate.setText(DateUtils.dateToString(currentCategory.date));
+        mBar = (RatingBar) findViewById(R.id.ratingBar);
+        if (currentCategory != null && savedInstanceState == null) {
+            categoryTitle.setText(currentCategory.title);
+            categoryDate.setText(DateUtils.dateToString(currentCategory.date));
+        }
         if (currentSearchItem != null && savedInstanceState == null) {
-            mBar = (RatingBar) findViewById(R.id.ratingBar);
             title.setText(currentSearchItem.title);
             description.setText(currentSearchItem.description);
             contact.setText(currentSearchItem.contact.name);
