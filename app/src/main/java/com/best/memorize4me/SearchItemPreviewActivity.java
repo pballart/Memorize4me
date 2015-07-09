@@ -87,7 +87,7 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(contactPhoneNumber.getText().toString()));
+                callIntent.setData(Uri.parse("tel: " + contactPhoneNumber.getText().toString()));
                 startActivity(callIntent);
             }
         });
