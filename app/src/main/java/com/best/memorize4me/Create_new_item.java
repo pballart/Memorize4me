@@ -183,4 +183,12 @@ public class Create_new_item extends ActionBarActivity {
         currentImage = path;
         imageButton.setImageBitmap(bm);
     }
+
+    public void goToMap(View view) {
+        Intent intent = new Intent(this, GoogleMapsActivity.class);
+        if (currentSearchItem != null) {
+            intent.putExtra("location", currentSearchItem.location);
+        }
+        startActivityForResult(intent, 0);
+    }
 }
