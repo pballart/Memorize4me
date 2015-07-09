@@ -42,19 +42,28 @@ public class CategoryList extends ActionBarActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
         int menuItemIndex = item.getItemId();
 
-        Category category = adapter.getItem(info.position);
+        final Category currentCategory = adapter.getItem(info.position);
         if (item.getItemId()==R.id.edit_category) {
             Intent myIntent = new Intent(CategoryList.this, NewCategory.class);
-            myIntent.putExtra("category", category);
+            myIntent.putExtra("category", currentCategory);
             startActivity(myIntent);
             finish();
 
         } else if (item.getItemId()==R.id.remove_category) {
-            adapter.remove(category);
-            adapter.notifyDataSetChanged();
-            arrayOfCategories.remove(category);
-            StorageFacade.getInstance().removeCategory(category.id);
 
+            AlertDialog.Builder adb = new AlertDialog.Builder(CategoryList.this);
+            adb.setTitle("Delete");
+            adb.setMessage("Are you sure you want to delete " + currentCategory.title + "?");
+            adb.setNegativeButton("Cancel", null);
+            adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                adapter.remove(currentCategory);
+                adapter.notifyDataSetChanged();
+                arrayOfCategories.remove(currentCategory);
+                StorageFacade.getInstance().removeCategory(currentCategory.id);
+                }
+            });
+            adb.show();
         }
 
         return true;
@@ -111,21 +120,6 @@ public class CategoryList extends ActionBarActivity {
 
 
     }
-
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v,
-//                                    ContextMenu.ContextMenuInfo menuInfo) {
-//        if (v.getId()==R.id.edit_category) {
-//            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-////            menu.setHeaderTitle(Countries[info.position]);
-////            String[] menuItems = getResources().getStringArray(R.array.menu);
-////            for (int i = 0; i<menuItems.length; i++) {
-////                menu.add(Menu.NONE, i, i, menuItems[i]);
-////            }
-//        } else if (v.getId()==R.id.remove_category) {
-//
-//        }
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
