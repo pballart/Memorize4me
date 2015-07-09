@@ -1,6 +1,7 @@
 package com.best.memorize4me;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ public class SearchItemPreviewActivity extends ActionBarActivity {
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_item_preview);
+        getSupportActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
         searchItem = (SearchItem) getIntent().getParcelableExtra("search_item");
 
         TextView title = (TextView) findViewById(R.id.titleTextView);

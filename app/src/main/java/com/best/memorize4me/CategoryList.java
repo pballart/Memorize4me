@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,8 +28,8 @@ import java.util.ArrayList;
 
 public class CategoryList extends ActionBarActivity {
 
+    ArrayList<Category> arrayOfCategories;
     CategoryAdapter adapter;
-    ListView listView;
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -40,6 +41,7 @@ public class CategoryList extends ActionBarActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        int menuItemIndex = item.getItemId();
 
         final Category currentCategory = adapter.getItem(info.position);
         if (item.getItemId()==R.id.edit_category) {
@@ -58,6 +60,7 @@ public class CategoryList extends ActionBarActivity {
                 public void onClick(DialogInterface dialog, int which) {
                 adapter.remove(currentCategory);
                 adapter.notifyDataSetChanged();
+                arrayOfCategories.remove(currentCategory);
                 StorageFacade.getInstance().removeCategory(currentCategory.id);
                 }
             });
@@ -68,27 +71,22 @@ public class CategoryList extends ActionBarActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        registerForContextMenu(listView);
-    }
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        unregisterForContextMenu(listView);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_list);
-        listView = (ListView) findViewById(R.id.categoryListView);
-        ArrayList<Category> arrayOfCategories = StorageFacade.getInstance().getCategories();
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("");
+        actionBar.setIcon(R.mipmap.ic_launcher);
+
+        final ListView listView = (ListView) findViewById(R.id.categoryListView);
+        arrayOfCategories = StorageFacade.getInstance().getCategories();
         if (arrayOfCategories != null) {
             adapter = new CategoryAdapter(this, arrayOfCategories);
             listView.setAdapter(adapter);
+            registerForContextMenu(listView);
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

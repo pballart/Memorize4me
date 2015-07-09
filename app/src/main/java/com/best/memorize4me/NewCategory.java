@@ -35,7 +35,7 @@ public class NewCategory extends ActionBarActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(R.mipmap.ic_launcher);
+        //actionBar.setIcon(R.mipmap.ic_launcher);
 
         currentCategory = (Category) getIntent().getSerializableExtra("category");
         titleTxt = (EditText) findViewById(R.id.editText);
