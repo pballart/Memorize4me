@@ -3,4 +3,5 @@
     <item name="green" type="color">#009688</item>
     <item name="white" type="color">#FFFFFF</item>
     <item name="salmonaken" type="color">#ea7f74</item>
+    <item name="yellow" type="color">#ffec49</item>
 </resources> 
