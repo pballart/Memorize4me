@@ -80,6 +80,7 @@ public class StorageFacade implements AppInterface{
                 com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_PHONE_NUMBER,
                 com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_EMAIL,
                 com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_DESCRIPTION,
+                SearchItemEntry.COLUMN_IMAGE_URL
                 //com.best.memorize4me.db.table.SearchItem.SearchItemEntry.COLUMN_LOCATION
         };
         Cursor cursor = getDatabase().query(
@@ -105,7 +106,8 @@ public class StorageFacade implements AppInterface{
                         cursor.getString(8), //email
                         cursor.getString(9), //description
                         null, //location
-                        null //image urls
+                        null, //image urls
+                        cursor.getString(10) //imageUrl
                 );
                 searchItemList.add(searchItem);
             } while (cursor.moveToNext());
@@ -131,6 +133,11 @@ public class StorageFacade implements AppInterface{
         getDatabase().delete(
                 Category.CategoryEntry.TABLE_NAME,
                 Category.CategoryEntry.COLUMN_ID + " = ?",
+                new String[] { String.valueOf(categoryId) }
+        );
+        getDatabase().delete(
+                com.best.memorize4me.db.table.SearchItem.SearchItemEntry.TABLE_NAME,
+                SearchItemEntry.COLUMN_CATEGORY_ID + " = ?",
                 new String[] { String.valueOf(categoryId) }
         );
     }
@@ -163,6 +170,7 @@ public class StorageFacade implements AppInterface{
         values.put(SearchItemEntry.COLUMN_PRICE, searchItem.price);
         values.put(SearchItemEntry.COLUMN_RATE, searchItem.rate);
         values.put(SearchItemEntry.COLUMN_TITLE, searchItem.title);
+        values.put(SearchItemEntry.COLUMN_IMAGE_URL, searchItem.imageUrl);
         getDatabase().insert(
                 SearchItemEntry.TABLE_NAME,
                 null,
@@ -191,6 +199,7 @@ public class StorageFacade implements AppInterface{
         values.put(SearchItemEntry.COLUMN_PRICE, searchItem.price);
         values.put(SearchItemEntry.COLUMN_RATE, searchItem.rate);
         values.put(SearchItemEntry.COLUMN_TITLE, searchItem.title);
+        values.put(SearchItemEntry.COLUMN_IMAGE_URL, searchItem.imageUrl);
         getDatabase().update(
                 com.best.memorize4me.db.table.SearchItem.SearchItemEntry.TABLE_NAME,
                 values,

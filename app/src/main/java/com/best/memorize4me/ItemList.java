@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.best.memorize4me.db.StorageFacade;
 import com.best.memorize4me.db.adapters.ItemAdapter;
-import com.best.memorize4me.db.fakeItUntilYouGetIt.FakeDB;
 import com.best.memorize4me.db.model.Category;
 import com.best.memorize4me.db.model.SearchItem;
 import com.best.memorize4me.util.DateUtils;
@@ -47,7 +46,6 @@ public class ItemList extends ActionBarActivity {
             myIntent.putExtra("category", currentCategory);
             myIntent.putExtra("search_item", currentSearchItem);
             startActivity(myIntent);
-            finish();
 
         } else if (item.getItemId() == R.id.remove_category) {
 
@@ -114,7 +112,6 @@ public class ItemList extends ActionBarActivity {
                 Intent myIntent = new Intent(ItemList.this, SearchItemPreviewActivity.class);
                 myIntent.putExtra("search_item", searchItem);
                 startActivity(myIntent);
-                finish();
             }
         });
     }
@@ -138,17 +135,9 @@ public class ItemList extends ActionBarActivity {
             Intent intent = new Intent(this, Create_new_item.class);
             intent.putExtra("category", currentCategory);
             startActivity(intent);
-            finish();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent myIntent = new Intent(ItemList.this, CategoryList.class);
-        startActivity(myIntent);
     }
 }

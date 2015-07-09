@@ -14,6 +14,7 @@ public class SearchItem implements Parcelable {
     public long id;
     public long categoryId;
     public String title;
+    public String imageUrl;
     public long date;
     public float price;
     public float rate;
@@ -27,7 +28,7 @@ public class SearchItem implements Parcelable {
     public SearchItem(long id, long categoryId, String title,
                       Long date, float price, float rate,
                       Contact contact, String description, Location location,
-                      String multilineDescription) {
+                      String multilineDescription, String imageUrl) {
         this.id = id;
         this.categoryId = categoryId;
         this.title = title;
@@ -49,7 +50,7 @@ public class SearchItem implements Parcelable {
 
     public SearchItem(long id, long categoryId, String title,
                       Long date, float price, float rate,
-                      Contact contact, String description, Location location, ArrayList<SearchItemPhoto> imageUrls) {
+                      Contact contact, String description, Location location, ArrayList<SearchItemPhoto> imageUrls, String imageUrl) {
         this.id = id;
         this.categoryId = categoryId;
         this.title = title;
@@ -73,7 +74,7 @@ public class SearchItem implements Parcelable {
                       Long date, float price, float rate,
                       String contactName, String contactPhoneNumber, String contactEmail,
                       String description, Location location,
-                      ArrayList<SearchItemPhoto> imageUrls) {
+                      ArrayList<SearchItemPhoto> imageUrls, String imageUrl) {
         this.id = id;
         this.categoryId = categoryId;
         this.title = title;
@@ -84,6 +85,7 @@ public class SearchItem implements Parcelable {
         this.description = description;
         this.location = location;
         this.imageUrls = null;
+        this.imageUrl = imageUrl;
         //this.imageUrls = imageUrls;
         /*
         this.imageUrls = new ArrayList<SearchItemPhoto>();
@@ -110,6 +112,7 @@ public class SearchItem implements Parcelable {
         dest.writeString(contact.phoneNumber);
         dest.writeString(contact.email);
         dest.writeString(description);
+        dest.writeString(imageUrl);
     }
 
     public static final Parcelable.Creator<SearchItem> CREATOR = new Creator<SearchItem>() {
@@ -128,6 +131,7 @@ public class SearchItem implements Parcelable {
             String contactEmail = source.readString();
             searchItem.contact = new Contact(contactName, contactPhoneNumber, contactEmail);
             searchItem.description = source.readString();
+            searchItem.imageUrl = source.readString();
             return searchItem;
         }
 
