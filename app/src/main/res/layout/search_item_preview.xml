@@ -135,7 +135,8 @@
                         android:layout_alignParentTop="true"
                         android:layout_toRightOf="@+id/contactPhoneNumberTextView"
                         android:layout_toEndOf="@+id/contactPhoneNumberTextView"
-                        android:onClick="showToast"/>
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginStart="19dp" />
                 </RelativeLayout>
 
                 <TextView
