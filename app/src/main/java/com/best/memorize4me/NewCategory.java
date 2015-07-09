@@ -2,6 +2,8 @@ package com.best.memorize4me;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +31,12 @@ public class NewCategory extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_category);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setIcon(R.mipmap.ic_launcher);
+
         currentCategory = (Category) getIntent().getSerializableExtra("category");
         titleTxt = (EditText) findViewById(R.id.editText);
         datePicker = (DatePicker) findViewById(R.id.datePicker);
@@ -82,6 +90,17 @@ public class NewCategory extends ActionBarActivity {
                 return true;
             }
         }
+        else {
+            if (id ==android.R.id.home){
+
+                Intent intent = new Intent(this, CategoryList.class);
+                startActivity(intent);
+
+                this.finish();
+                return true;
+            }
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

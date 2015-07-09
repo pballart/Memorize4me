@@ -1,8 +1,11 @@
 package com.best.memorize4me;
 
+import android.content.ClipData;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +37,13 @@ public class Create_new_item extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_item);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setIcon(R.mipmap.ic_launcher);
+
         TextView categoryTitle = (TextView) findViewById(R.id.categoryTitle);
         TextView categoryDate = (TextView) findViewById(R.id.categoryDate);
         currentCategory = (Category) getIntent().getSerializableExtra("category");
@@ -95,6 +105,12 @@ public class Create_new_item extends ActionBarActivity {
             i.putExtra("category", currentCategory);
             startActivity(i);
             finish();
+        }
+        if (id==android.R.id.home){
+
+            Intent myIntent = new Intent(Create_new_item.this, ItemList.class);
+            myIntent.putExtra("category",currentCategory);
+            startActivity(myIntent);
         }
         return super.onOptionsItemSelected(item);
     }
